@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Опрацювання списків: функції та методи</title><link rel="stylesheet" href="assets/style.css"><script src="lesson.js"></script><script src="assets/engine.js"></script><script src="assets/practice.js" defer></script></head>
+<body><main>
+<header><span class="brand">Опрацювання списків: функції та методи</span><ol id="stages" aria-label="Етапи роботи"><li>Дані</li><li>Теорія</li><li>Практика</li><li>Тест</li><li>Результати</li></ol></header>
+<div id="warning" class="warning" role="alert" hidden><span id="warningText"></span></div>
+<section id="identity" class="panel narrow" hidden><h1>Почнімо</h1><form id="identityForm"><label for="surname">Прізвище</label><input id="surname" autocomplete="family-name" maxlength="60" required><label for="firstName">Ім’я</label><input id="firstName" autocomplete="given-name" maxlength="60" required><label for="className">Клас</label><input id="className" maxlength="16" placeholder="Наприклад, 9-А" required><p class="small">Коротка теорія, 15 завдань із пропусками в Python-коді та тест із 8 запитань. Код на сторінці не запускається.</p><p class="policy">За правильну першу перевірку — 100% балів завдання, другу — 90%, наступні — 80%. За нерозв’язані завдання зараховуються правильні частини. Змінюй фрагменти вільно: спроба починається лише кнопкою «Перевірити».</p><button class="primary" type="submit">До теорії →</button></form></section>
+<section id="theory" class="panel" hidden>
+<h1>Як опрацьовувати списки</h1>
+<p>Коротко пригадай пошук зі списком, а потім розглянь функції та методи. У прикладах списки числові.</p>
+<div class="theory-cards">
+<article><h2>1. Повторення з уроку 16</h2>
+<p>Індекси починаються з нуля. <code>a[-1]</code> бере останній елемент, а <code>a[::-1]</code> створює перевернуту копію. Якщо вона збігається з <code>a</code>, список є паліндромом. Його також можна перевірити, порівнюючи симетричні пари.</p>
+<p><code>t in a</code> перевіряє наявність значення. Для пошуку елемента, більшого за поріг, переглядай елементи по черзі. <code>break</code> зупиняє цикл після знахідки. Гілка <code>else</code> циклу <code>for</code> виконується, якщо цикл завершився без <code>break</code>.</p>
+<pre>a = [3, 5, 3]
+print(a == a[::-1])  # True
+print(5 in a)        # True</pre></article>
+<article><h2>2. Функції для числових списків</h2>
+<p><code>len(a)</code> дає кількість елементів, <code>sum(a)</code> — суму, <code>min(a)</code> і <code>max(a)</code> — найменше та найбільше значення. Для пошуку крайніх значень потрібен непорожній список.</p>
+<pre>a = [2, 4, 6, 8, 4]
+print(len(a), sum(a))  # 5 24
+print(min(a), max(a))  # 2 8</pre>
+<p>У власній функції суму починають з нуля. Для пошуку мінімуму й максимуму можна почати з першого елемента й оновлювати обидва значення в одному циклі.</p></article>
+<article><h2>3. Методи списку</h2>
+<p>Метод викликають через крапку. <code>append</code> додає в кінець, <code>insert</code> уставляє за індексом, <code>remove</code> видаляє перший збіг за значенням. <code>pop</code> видаляє і повертає елемент за індексом, без аргументу — останній. <code>clear</code> очищає весь список.</p>
+<pre>a = [2, 4, 6, 4]
+a.remove(4)     # [2, 6, 4]
+x = a.pop()     # x = 4, a = [2, 6]</pre>
+<p><code>count</code> повертає кількість збігів, а <code>index</code> — індекс першого збігу. Перед <code>index</code> перевір наявність значення, інакше можливий <code>ValueError</code>.</p></article>
+<article><h2>4. Від операцій до задач</h2>
+<p>Щоб знайти найвищу оцінку та кількість її входжень, спочатку обчисли максимум, а тоді порахуй його повтори. Два значення можна повернути однією командою <code>return</code> і прийняти у дві змінні.</p>
+<pre>def summary(a):
+    top = max(a)
+    return top, a.count(top)
+
+mark, count = summary([9, 12, 8, 12])</pre>
+<p>Середнє дорівнює сумі, поділеній на кількість. Для підрахунку оцінок нижче від середньої збільшуй лічильник лише для значень, менших від нього.</p></article>
+</div>
+<button id="startPractice" class="primary" type="button">До практики →</button>
+</section>
+<section id="practice" hidden><button id="reviewTheory" class="theory-return" type="button">Переглянути теорію</button><div class="progress-line"><span id="taskCount"></span><progress id="progress" max="15" value="0"></progress></div><nav id="taskNav" aria-label="Завдання практики"></nav><div class="panel"><h1 id="taskTitle"></h1><p id="instruction" class="instruction"></p><div class="studio"><form id="taskForm"><div id="fields"></div></form></div><p id="feedback" class="feedback" role="status" aria-live="polite"></p><div class="actions"><button id="check" class="primary" form="taskForm" type="submit">Перевірити</button><button id="next" disabled>Далі →</button></div></div></section>
+<section id="test" class="panel narrow test-panel" hidden><h1>Короткий тест</h1><p>8 запитань про виконані завдання. Відповіді перевіряються після завершення всього тесту; правило повторних спроб практики тут не застосовується.</p><form id="testForm"><div id="questions"></div><button class="primary" id="finishTest" type="submit">Завершити тест</button></form></section>
+<section id="results" class="panel" hidden><h1>Результати тренажера</h1><div id="scores" class="scores"></div><div id="exportArea" hidden><p>Робота збережена на цьому пристрої. Сайт її нікуди не надсилав. Завантаж файл результатів, прикріпи його до завдання Classroom і натисни «Здати» там.</p><div class="actions"><button id="exportHTML" class="primary">Завантажити результат</button><button id="newWork">Почати нову роботу</button></div><p id="exportNote" class="small" role="status"></p></div><div id="deductions"></div></section>
+<p id="loading" class="small">Завантаження…</p>
+</main></body></html>
