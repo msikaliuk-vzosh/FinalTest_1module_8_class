@@ -1,64 +1,731 @@
-<!doctype html><html lang="uk"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Інформатика · Контрольна робота · 8 клас</title>
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f5f1">
+<title>Прапорці та перемикачі · Тренажер 8 класу</title>
 <style>
-:root{font-family:system-ui,sans-serif;color:#182b3a;background:#f2f5f8}*{box-sizing:border-box}body{margin:0}main{max-width:850px;margin:auto;padding:28px 18px 70px}header{padding:25px 0}h1{font-size:32px;letter-spacing:-1px;margin:12px 0}h2{font-size:20px}p{line-height:1.6}.tag{color:#126356;font-weight:700;font-size:13px;letter-spacing:1px}.card,fieldset{background:white;border:1px solid #dbe3e9;border-radius:16px;padding:24px;margin:18px 0;min-width:0}fieldset legend{float:left;width:100%;font-weight:700;font-size:18px;margin-bottom:15px;line-height:1.5}fieldset legend+*{clear:both}.hint{color:#526676;font-size:14px;margin:0 0 16px}label.option{display:flex;align-items:center;gap:12px;padding:13px;background:#f5f7fa;border:1px solid transparent;border-radius:9px;margin:8px 0;cursor:pointer}label.option:has(input:checked){border-color:#128074;background:#eaf7f3}input,select,button{font:inherit}input[type=text],input[type=number],select{padding:12px;border:1px solid #b9c7d1;border-radius:8px;max-width:100%;background:white}input[type=text]{width:100%;margin:7px 0 18px}input[type=checkbox],input[type=radio]{width:20px;height:20px;accent-color:#147568;flex-shrink:0}button{border:0;border-radius:9px;padding:13px 19px;background:#146f62;color:white;font-weight:650;cursor:pointer}button:hover{filter:brightness(.94)}button:disabled{opacity:.4;cursor:default}.secondary{background:#e6edf2;color:#243d4d}.bar{position:sticky;top:0;z-index:5;background:#182e3e;color:white;padding:15px 20px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.row{display:flex;align-items:center;gap:12px;margin:12px 0;flex-wrap:wrap}.row>span{flex:1;min-width:170px}.row select{flex:1;min-width:160px}.order{list-style:none;padding:0}.order li{display:flex;align-items:center;gap:8px;background:#f4f7f9;border-radius:9px;margin:8px 0;padding:10px}.order span{flex:1}.order button{padding:8px 13px}.score{font-size:60px;font-weight:800;color:#146f62}pre{white-space:pre-wrap;font:inherit;line-height:1.65}.hidden{display:none!important}progress{width:100%;height:8px;accent-color:#146f62}.warn{color:#b84025}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #eea832;outline-offset:3px}@media(max-width:550px){h1{font-size:26px}.card,fieldset{padding:18px}.bar{font-size:14px}.order button{padding:9px}.row>span{width:100%;flex-basis:100%}}@media print{button,.bar{display:none}body{background:white}.card{border:0}}
-</style><main><header><div class="tag">8 КЛАС / ІНФОРМАТИКА</div><h1>Контрольна робота</h1><p>Кодування даних · Архіви й резервні копії · Комп’ютерні пристрої</p></header>
-<section id="intro" class="card"><h2>Перш ніж почати</h2><p>16 випадкових завдань із банку 32 питань • 25 хвилин • оцінка від 1 до 12.<br>Уважно читай підказку до кожного завдання. Можна повертатися до попередніх відповідей. Після завершення збережи результат і передай його вчителю.</p><p class="hint">У завданнях на відповідності та порядок є часткові бали. У завданнях із кількома відповідями бал нараховується лише за повністю правильний набір.</p><form id="startForm"><label for="student">Прізвище та ім’я</label><input id="student" type="text" required maxlength="100" autocomplete="name"><label for="className">Клас (наприклад, 8-А)</label><input id="className" type="text" required maxlength="30"><button>Почати роботу</button></form><p class="hint">Відповіді зберігаються в цьому браузері. Результат не надсилається вчителю автоматично.</p></section>
-<section id="work" class="hidden"><div class="bar"><span id="progressText"></span><strong id="timer" role="timer"></strong></div><progress id="progress" max="16" value="0"></progress><form id="quiz"></form><button id="finish">Завершити роботу</button><p id="error" role="alert" class="warn"></p></section>
-<section id="result" class="card hidden"><div class="tag">РОБОТУ ЗАВЕРШЕНО</div><h2 id="resultName"></h2><div class="score" id="grade"></div><pre id="summary"></pre><div class="row"><button id="download">Завантажити результат (.txt)</button><button class="secondary" onclick="window.print()">Друк / PDF</button></div><p>Прикріпи файл результату до завдання в Classroom або покажи цю сторінку вчителю.</p><button id="reset" class="secondary">Нова спроба</button></section></main>
+
+:root{font-family:'Segoe UI',system-ui,sans-serif;color:#213a4a;background:#f4f5f1;--blue:#225bc7;--line:#d9e0e2;--muted:#5c6d74}
+*{box-sizing:border-box}
+body{margin:0}
+main{max-width:1060px;margin:auto;padding:0 24px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);margin-bottom:28px}
+.brand{font-weight:750;font-size:20px;letter-spacing:-.5px}
+header ol{display:flex;list-style:none;gap:18px;padding:0;margin:0;font-size:13px;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;margin-bottom:22px;box-shadow:0 4px 14px #19374904}
+.narrow{max-width:680px;margin:35px auto}
+h1{font-size:30px;line-height:1.2;letter-spacing:-.8px;margin:0 0 16px}
+h2{font-size:16px;margin:0 0 12px;font-weight:650}
+p{line-height:1.65}
+button,input,select{font:inherit}
+button{min-height:46px;padding:11px 18px;border-radius:9px;border:1px solid #b9c8ce;background:#fff;color:#233e50;font-weight:650;cursor:pointer}
+button:hover{background:#eef3fb}
+button:disabled{opacity:.48;cursor:default}
+button.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+button.primary:hover{background:#174ba8}
+label{display:block;margin:16px 0 7px;font-size:14px;font-weight:650}
+input,select{width:100%;min-height:46px;padding:11px;border:1px solid #b8c5cd;border-radius:8px;color:#203d50;background:#fff}
+button:focus-visible,input:focus,select:focus{outline:3px solid #edc15d;outline-offset:2px}
+.small{font-size:13px;color:var(--muted)}
+.policy{font-size:14px;background:#f0f4fb;border-radius:10px;padding:16px}
+.narrow .primary{margin-top:14px}
+.progress-line{display:flex;align-items:center;font-size:14px;margin-bottom:15px}
+progress{width:100%;height:7px;accent-color:var(--blue)}
+#taskNav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+#taskNav button{padding:0;border-radius:50%}
+.instruction{max-width:840px;font-size:16px}
+.feedback{font-size:14px}
+.feedback.good{color:#256649}
+.actions{display:flex;gap:12px;border-top:1px solid #e2e6e8;padding-top:20px}
+.warning{padding:15px 18px;border:1px solid #dfc17b;background:#fff6de;border-radius:10px;line-height:1.6;font-size:14px;margin-bottom:18px}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:25px 0}
+.score-card{background:#f0f4fa;padding:22px;border-radius:12px}
+.score{font-size:36px;font-weight:750;color:var(--blue)}
+.result-row{padding:15px 0;border-bottom:1px solid var(--line)}
+.result-row strong{display:block;font-size:14px;margin-bottom:5px}
+.result-row p{margin:4px 0;font-size:13px;color:#516675}
+[hidden]{display:none!important}
+@media(max-width:700px){
+  header{padding:19px 0;display:block;margin-bottom:20px}
+  .brand{font-size:18px}
+  header ol{margin-top:14px;gap:14px;font-size:12px}
+  .panel{border-radius:14px}
+  .narrow{margin:22px auto}
+  h1{font-size:25px}
+  .instruction{font-size:15px}
+  .progress-line{font-size:13px}
+  .scores{grid-template-columns:1fr}
+  .actions button{padding:11px}
+}
+
+:root{color-scheme:light}
+header ol{flex-wrap:wrap}
+header li[aria-current]{color:var(--blue);font-weight:750}
+.eyebrow{font-size:.75rem;font-weight:750;color:#4b6575;letter-spacing:.07em;margin:0 0 12px}
+h1:focus{outline:none}
+#taskNav button{width:44px;min-height:44px;font-size:14px}
+#taskNav button[aria-current]{background:#213e54;color:#fff;border-color:#213e54}
+#taskNav .done:not([aria-current]){background:#edf7f0;border-color:#6da88a;color:#215239}
+.progress-line{gap:12px}
+progress{flex:1;min-width:40px}
+#code{background:#f4f7fb;border:1px solid #d9e3ef;color:#19394e;font:14px/1.95 Consolas,'Courier New',monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:16px}
+.blank,.option{font:inherit;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere}
+.blank{vertical-align:baseline;max-width:100%;min-width:48px;min-height:44px;padding:5px 10px;margin:3px 1px;background:#eaf1ff;color:#17479a;border:1px dashed #3972bc}
+.blank.filled{border-style:solid;background:#fff}
+.blank.block{max-width:calc(100% - 8ch)}
+.blank:disabled{opacity:1;background:#f1f7f3;border-color:#9ebca9;color:#244a39}
+.instruction{margin-bottom:14px}
+.brief{padding:12px 16px;background:#f0f4fb;border-radius:10px;margin:0 0 20px}
+.brief p{margin:4px 0}
+.brief ul{padding-left:22px;line-height:1.6;margin:8px 0}
+.feedback{padding:10px 0 0}
+.feedback:empty{display:none}
+.feedback p{margin:7px 0 12px}
+.feedback ul{padding-left:22px;line-height:1.6}
+.needs-work{color:#794515}
+.actions{margin-top:16px;flex-wrap:wrap}
+dialog{max-height:calc(100dvh - 32px);width:min(620px,calc(100% - 28px));padding:20px;color:inherit;border:1px solid var(--line);border-radius:15px}
+dialog::backdrop{background:#132b44a0}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.dialog-head h2{margin:0}
+#choices{display:grid;gap:8px}
+.option{font-family:Consolas,'Courier New',monospace}
+.option.selected{border-color:var(--blue);background:#edf3ff}
+#sim{margin-top:20px;padding:16px;border:1px solid #d3dbe1;border-radius:12px;background:#f0f2f5}
+#simControls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+#simControls button[aria-pressed=true]{background:#e3edff;border-color:#3972bc}
+#simAmount{max-width:220px}
+#simOutput{margin-bottom:0;overflow-wrap:anywhere}
+.question{margin:20px 0 0;padding:10px 0 14px;border:0;border-bottom:1px solid var(--line);min-inline-size:0}
+.question legend{font-weight:700;line-height:1.5;padding:0}
+.question .test-option{display:flex;align-items:center;gap:11px;min-height:44px;margin:5px 0;padding:4px 10px;border-radius:8px;background:#f5f7fb;cursor:pointer;font-size:15px}
+.test-option input{width:18px;min-height:18px;flex:none;accent-color:var(--blue)}
+details{margin-top:20px}
+summary{cursor:pointer;font-weight:650;padding:8px 0}
+@media(max-width:700px){
+  main{padding-inline:12px}
+  .panel,.test-panel{padding:16px}
+  #code{padding:10px;font-size:13px}
+  .actions button{flex:1 1 auto}
+}
+</style>
+</head>
+<body><main>
+<header>
+  <span class="brand">Прапорці та перемикачі</span>
+  <ol id="stages" aria-label="Етапи роботи"><li>Дані</li><li>Практика</li><li>Тест</li><li>Результати</li></ol>
+</header>
+<div id="storage" class="warning" role="status" hidden>Браузер не зберігає прогрес. Залиш сторінку відкритою і після тесту завантаж звіт.</div>
+<noscript><p class="warning">Увімкни JavaScript у браузері, щоб працювати з тренажером.</p></noscript>
+<section id="identity" class="panel narrow" hidden>
+  <p class="eyebrow">ІНФОРМАТИКА · 8 КЛАС · УРОКИ 33–35</p>
+  <h1 tabindex="-1">Прапорці та перемикачі в Python</h1>
+  <p>Заповни пропуски в коді, збери програму з розгалуженнями й пройди окремий тест.</p>
+  <form id="identityForm">
+    <label for="surname">Прізвище</label><input id="surname" autocomplete="family-name" maxlength="60" required>
+    <label for="firstName">Ім’я</label><input id="firstName" autocomplete="given-name" maxlength="60" required>
+    <label for="className">Клас</label>
+    <select id="className" required><option value="">Обери клас</option><option>8-А</option><option>8-Б</option><option>8-Г</option><option>8-Д</option><option>8-Є</option></select>
+    <p class="small">2 × 40 хв. Орієнтир — 35 хв на 14 мінізавдань, 25 хв на проєкт, 15 хв на тест і 5 хв на звіт.</p>
+    <p class="policy">Практика й тест мають окремі оцінки з 12 балів. За правильні частини рішення зараховується 100% на першій перевірці, 90% на другій і 80% на наступних. Можна змінювати фрагменти й випробовувати проєкт до перевірки.</p>
+    <button type="submit" class="primary">Почати практику →</button>
+  </form>
+</section>
+<section id="practice" hidden>
+  <div class="progress-line"><span id="taskCount"></span><progress id="progress" aria-label="Перевірені завдання"></progress></div>
+  <nav id="taskNav" aria-label="Завдання практики"></nav>
+  <div class="panel">
+    <p id="eyebrow" class="eyebrow"></p>
+    <h1 id="taskTitle" tabindex="-1"></h1>
+    <p id="instruction" class="instruction"></p>
+    <div id="projectBrief" class="brief" hidden>
+      <ul>
+        <li><strong>15% річних.</strong> Після першого року додай відсотки до вкладу. Другий рік нараховує відсотки на нову суму.</li>
+        <li><strong>17% річних.</strong> В обидва роки відсотки обчислюються від початкового вкладу.</li>
+        <li>Після натискання «Обчислити» покажи суму за два роки в написі з одиницею «грн». Округли до сотих. Якщо варіант не вибрано, покажи «Обери депозит».</li>
+      </ul>
+      <p>Для 1000 грн очікуємо 1322.50 грн за 15% і 1340.00 грн за 17%. Склади інтерфейс, дві гілки й обробник кнопки. Після перевірки побачиш результати для кількох сценаріїв.</p>
+    </div>
+    <p id="snippetNote" class="small">Натисни пропуск і вибери фрагмент. У фрагментах вікно Tkinter та змінні, створені раніше, уже доступні.</p>
+    <pre id="code" aria-label="Код Python"></pre>
+    <aside id="sim" hidden>
+      <h2>Симуляція вікна Tkinter</h2>
+      <p class="small">Браузер моделює поточні блоки конструктора. Дії в симуляції не впливають на оцінку.</p>
+      <label for="simAmount">Початкова сума (грн)</label>
+      <input id="simAmount" inputmode="numeric" value="1000" maxlength="7">
+      <div id="simControls" aria-label="Варіанти депозиту"></div>
+      <button id="simRun" type="button">Обчислити</button>
+      <p id="simOutput" role="status"></p>
+    </aside>
+    <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+    <div class="actions">
+      <button id="prev" type="button">← Назад</button>
+      <button id="check" type="button" class="primary">Перевірити</button>
+      <button id="next" type="button">Далі →</button>
+    </div>
+  </div>
+</section>
+<section id="test" class="panel narrow test-panel" hidden>
+  <h1 tabindex="-1">Підсумковий тест</h1>
+  <p>Вибери одну відповідь у кожному з 8 запитань. Після завершення побачиш окрему оцінку й пояснення, де була помилка.</p>
+  <form id="testForm"><div id="questions"></div><button type="submit" class="primary">Завершити тест</button></form>
+</section>
+<section id="results" class="panel" hidden>
+  <h1 tabindex="-1">Результати тренажера</h1>
+  <p id="profileResult"></p>
+  <div id="scores" class="scores"></div>
+  <p>Прогрес і оцінки зберігаються в локальному сховищі цього браузера. Щоб передати оцінки вчителю, завантаж HTML-звіт і прикріпи його до завдання в Classroom.</p>
+  <div class="actions"><button id="export" type="button" class="primary">Завантажити результат</button><button id="newWork" type="button">Почати нову роботу</button></div>
+  <details><summary>Бали та помилкові перевірки за завданнями</summary><div id="detail"></div></details>
+  <details><summary>Відповіді підсумкового тесту</summary><div id="testReview"></div></details>
+</section>
+<dialog id="picker" aria-labelledby="pickerTitle">
+  <div class="dialog-head"><h2 id="pickerTitle"></h2><form method="dialog"><button>Закрити</button></form></div>
+  <div id="choices"></div>
+</dialog>
+</main>
 <script>
-const BASE=[
-{type:'single',q:'Що відбувається під час кодування повідомлення?',options:['Повідомлення обов’язково видаляють','Змінюють спосіб подання, зберігаючи зміст','Завжди змінюють зміст повідомлення','Вимикають комп’ютер'],answer:[1]},
-{type:'single',q:'Для чого потрібна таблиця кодів символів?',options:['Щоб змінювати гучність','Щоб визначати розмір монітора','Щоб установити відповідність між символами та їхніми кодами','Щоб створювати резервні копії'],answer:[2]},
-{type:'match',q:'Установи відповідності для графічних даних.',left:['Піксель','RGB','Векторне зображення'],options:['Червоний, зелений, синій','Зображення з геометричних об’єктів','Найменший елемент растрового зображення'],answer:[2,0,1]},
-{type:'multi',q:'Які цифри використовує двійкова система числення?',options:['0','2','1','9'],answer:[0,2]},
-{type:'number',q:'Скільки бітів містять 3 байти?',answer:24,unit:'бітів'},
-{type:'number',q:'Текст містить 20 символів. Кожен символ закодовано 1 байтом. Скільки байтів займає текст без додаткових даних?',answer:20,unit:'байтів'},
-{type:'multi',q:'Вибери розширення архівних файлів.',options:['.zip','.txt','.7z','.png'],answer:[0,2]},
-{type:'single',q:'Що означає стиснення без втрат?',options:['Частина даних зникає назавжди','Після відновлення отримуємо всі початкові дані','Файл обов’язково стає зображенням','Файл можна відкрити лише один раз'],answer:[1]},
-{type:'order',q:'Розташуй дії створення архіву в 7-Zip у правильному порядку. Програма вже відкрита в потрібній папці.',items:['Виділити потрібні файли','Натиснути «Додати»','Задати ім’я та формат архіву','Натиснути «ОК»'],answer:[0,1,2,3]},
-{type:'multi',q:'Які дії допомагають зберегти дані при поломці основного диска?',options:['Мати резервну копію на іншому носії','Зберігати єдину копію на тому самому диску','Регулярно оновлювати резервні копії','Видалити всі копії'],answer:[0,2]},
-{type:'order',q:'Упорядкуй одиниці обсягу даних від найменшої до найбільшої.',items:['Біт','Байт','Кілобайт','Мегабайт'],answer:[0,1,2,3]},
-{type:'match',q:'Поєднай пристрій із його основним призначенням.',left:['Клавіатура','Монітор','SSD'],options:['Довготривале зберігання даних','Введення тексту','Виведення зображення'],answer:[1,2,0]},
-{type:'multi',q:'Вибери пристрої введення даних.',options:['Сканер','Принтер','Мікрофон','Колонки'],answer:[0,2]},
-{type:'multi',q:'Вибери пристрої виведення даних.',options:['Клавіатура','Принтер','Навушники','Миша'],answer:[1,2]},
-{type:'single',q:'Який пристрій зручно використати для перенесення файлів між комп’ютерами без інтернету?',options:['Мікрофон','Вебкамера','USB-флешнакопичувач','Монітор'],answer:[2]},
-{type:'match',q:'Поєднай вид комп’ютера з відповідним описом.',left:['Ноутбук','Планшет','Суперкомп’ютер'],options:['Виконує надскладні наукові обчислення','Портативний комп’ютер із вбудованою клавіатурою та екраном','Портативний комп’ютер із сенсорним екраном, зазвичай без вбудованої фізичної клавіатури'],answer:[1,2,0]}
+'use strict';
+
+const slot = (valid, options, hint) => ({valid, options, hint});
+const task = (title, goal, code, fields) => ({title, goal, code, fields, points:2});
+const tasks = [
+task('Стан позначки','Змінна color має зберігати логічне значення: істину, коли варіант відмічено, і хибу, коли позначку знято.',
+"color = @@\nCheckbutton(text='Колір', variable=color).pack()",[
+slot(['BooleanVar()'],['IntVar()','BooleanVar()','BooleanVar(','StringVar()'],'Потрібна спеціальна змінна логічного типу, пов’язана з елементом вікна.')]),
+task('Два незалежні вибори','У вікні можна відмітити обидва варіанти, один або жодного. Кожний елемент має зберігати власний стан.',
+"top = BooleanVar()\nbg = BooleanVar()\n@@(text='Заголовок', variable=top).pack()\nCheckbutton(text='Колір', variable=@@).pack()",[
+slot(['Checkbutton'],['Radiobutton','Checkbutton','Check-button'],'Перший елемент має вмикатися й вимикатися незалежно від другого.'),
+slot(['bg'],['top','bg()','bg'],'Зістав кожний підпис з окремою змінною.')]),
+task('Позначка під час запуску','На початку у варіанта «Колір» уже має бути позначка.',
+"color = BooleanVar()\nflag = Checkbutton(text='Колір', variable=color)\nflag.pack()\n@@",[
+slot(['color.set(True)','flag.select()'],['color.set(False)','flag.select()','color.set[True]','color.set(True)'],'Після створення стан за замовчуванням хибний. Встанови стан вибору.')]),
+task('Зміна кольору','У цьому обробнику колір вікна стає червоним лише тоді, коли користувач поставив позначку «Колір».',
+"color = BooleanVar()\nCheckbutton(text='Колір', variable=color).pack()\ndef click():\n    if @@:\n        root['bg'] = 'red'",[
+slot(['color.get()','color.get() == True'],['not color.get()','color.get() == True','color.get()','color.get(]'],'Умова має читати поточний стан і бути істинною саме за наявності позначки.')]),
+task('Дві дії за одне натискання','Якщо є обидві позначки, зміни і заголовок, і колір. Якщо вибрано лише одну, застосуй лише відповідну зміну.',
+"def click():\n    if title.get():\n        root.title('Заголовок змінено')\n    @@ color.get():\n        root['bg'] = 'red'",[
+slot(['if'],['elif','if','else if'],'Простеж виконання, коли обидві умови істинні.')]),
+task('Лише один варіант','Вибір «Колір» має знімати вибір «Розміри» й навпаки. Доповни рядок для варіанта «Колір».',
+"choice = IntVar()\nother = IntVar()\n@@(text='Колір', variable=@@, value=1).pack()\nRadiobutton(text='Розміри', variable=choice, value=2).pack()",[
+slot(['Radiobutton'],['Checkbutton','Radio-button','Radiobutton'],'Елементи одного типу мають працювати як взаємовиключна група.'),
+slot(['choice'],['other','choice','choice.get()'],'Учасники групи мають використовувати одну спільну змінну.')]),
+task('Початковий вибір у групі','Під час відкриття вікна одразу вибрано «Розміри». Значення 1 закріплено за варіантом «Колір».',
+"choice = IntVar()\nRadiobutton(text='Колір', variable=choice, value=1).pack()\nRadiobutton(text='Розміри', variable=choice, value=@@).pack()\nchoice.set(2)",[
+slot(['2'],['1','2','==2','0'],'Початковий вибір відповідає значенню, записаному в останньому рядку.')]),
+task('Третя дія лише за вибором','У групі значення 1 означає заголовок, 2 — колір, 3 — розміри. Якщо вибору немає (0), кнопка нічого не змінює.',
+"def click():\n    if choice.get() == 1:\n        root.title('Заголовок змінено')\n    elif choice.get() == 2:\n        root['bg'] = 'red'\n    @@\n        root.geometry('600x300')",[
+slot(['elif choice.get() == 3:','if choice.get() == 3:'],['else:','if choice.get() == 3:','elif choice.get() = 3:','elif choice.get() == 3:'],'Перевір останню гілку окремо для 3 та 0.')]),
+task('Прапорці додають бали','За групою перемикачів уже визначено базовий рейтинг. Кожна з двох позначок додає по 2 бали. Наприклад, за бази 7 і двох позначок покажи 11.',
+"def click():\n    s = base_score(choice.get())\n    if clubs.get():\n        s += 2\n    if sports.get():\n        @@\n    lab['text'] = str(s)",[
+slot(['s += 2','s = s + 2'],['s = 2','s = s + 2','s =+ 2','s += 2','s + = 2'],'Збережи вже накопичені бали й додай ще два.')]),
+task('Ділення з перевіркою','Прочитай дробове число a з поля. Якщо знаменник 2a − b нульовий, покажи повідомлення. Інакше обчисли вираз.',
+"def click():\n    a = @@\n    b = float(entry2.get())\n    d = 2 * a - b\n    if @@:\n        z = 'Ділення на нуль'\n    else:\n        z = (a + 3 * b) / d\n    entry3.delete(0, END)\n    entry3.insert(0, z)",[
+slot(['float(entry1.get())'],['entry1.get()','int(entry1.get())','float(entry1.get())','float entry1.get()'],'Перетвори текст поля на число з підтримкою дробової частини.'),
+slot(['d == 0','0 == d'],['d != 0','d = 0','0 == d','d == 0'],'Перевір a = 2, b = 4 і a = 2, b = 3.')]),
+task('Найменше з чотирьох','Після перших двох чисел best уже містить менше з них. Перевір третє й четверте числа, щоб best містила найменше з усіх чотирьох.',
+"best = min(v1, v2)\nif v3 < best:\n    best = v3\nif @@:\n    best = v4\nlab['text'] = str(best)",[
+slot(['v4 < best','best > v4','v4 <= best'],['best > v4','v4 > best','v4 = best','v4 <= best','v4 < best'],'Четверте число може замінити поточний мінімум, якщо воно менше. За рівності результат той самий.')]),
+task('Кнопка запускає обчислення','Обробник click має запускатися при натисканні «Обчислити». Під час створення кнопки обчислення ще не виконується.',
+"button = Button(text='Обчислити', @@)\nbutton.pack()",[
+slot(['command=click'],['command=click()','command==click','command=click','state=click'],'Передай саму функцію кнопці.')]),
+task('Депозит із капіталізацією','Після першого року до суми додають 15%. У другому році 15% нараховують на оновлену суму. Для 1000 грн отримай 1322.50 грн.',
+"if choice.get() == 1:\n    total = @@\n    result['text'] = str(round(total, 2))",[
+slot(['s * 1.15 ** 2','s * 1.15 * 1.15'],['s * 1.30','s * 1.15 * 1.15','s * 1.15 ^ 2','s * 1.15 ** 2','s * 1.15 **'], 'До оновленої суми застосуй той самий множник ще раз.')]),
+task('Депозит без капіталізації','За кожен із двох років додають 17% від початкової суми. Для 1000 грн отримай 1340 грн.',
+"if choice.get() == 2:\n    total = @@\n    result['text'] = str(round(total, 2))",[
+slot(['s + 2 * s * 0.17','s * 1.34'],['s * 1.17 ** 2','s * 1.34','s + 2s * 0.17','s + 2 * s * 0.17'],'Обидва річні нарахування мають однакову базу.')])
+];
+const questions = [
+['Які елементи дають змогу вибрати два незалежні варіанти одночасно?',['Прапорці','Перемикачі однієї групи','Написи'],0],
+['Яке значення поверне color.get(), якщо color — змінна BooleanVar, а позначку знято?',['0 як текст','True','False'],2],
+['Що утворює групу перемикачів, у якій можна вибрати один варіант?',['Різні variable і однакові value','Спільна variable і різні value','Однакові text'],1],
+['У групі значення 1, 2 і 3. Як одразу вибрати варіант зі значенням 2?',['choice.get(2)','choice.set(2)','choice.set(1)'],1],
+['Обидва прапорці вибрано. Спочатку if перевіряє перший, а elif — другий. Які дії виконуються?',['Обидві','Тільки дія другого','Тільки дія першого'],2],
+['Який запис передає обробник click кнопці для запуску під час натискання?',['command=click','command=click()','command==click'],0],
+['Для a = 3 та b = 6 знаменник дорівнює 2 * a − b. Що зробить програма з перевіркою з практики?',['Обчислить частку','Покаже повідомлення про ділення на нуль','Виведе мінімум'],1],
+['Вклад 2000 грн, ставка 17%, два роки, відсотки щороку обчислюються від початкової суми. Який результат?',['2340 грн','2737.80 грн','2680 грн'],2]
 ];
 
-const ALTERNATIVES=[
-{type:'single',q:'Що таке декодування повідомлення?',options:['Створення архіву','Відновлення повідомлення з його закодованого подання','Видалення повідомлення','Друкування будь-якого тексту'],answer:[1]},
-{type:'single',q:'Що з наведеного є системою кодування символів?',options:['Unicode','Принтер','SSD','Мікрофон'],answer:[0]},
-{type:'match',q:'Поєднай поняття з описом.',left:['Растрове зображення','Колірна модель RGB','Векторна графіка'],options:['Використовує червоний, зелений та синій кольори','Складається із сітки пікселів','Описує зображення за допомогою геометричних об’єктів'],answer:[1,0,2]},
-{type:'multi',q:'Які записи складаються лише з двійкових цифр?',options:['1010','1201','0011','1020'],answer:[0,2]},
-{type:'number',q:'Скільки бітів містять 2 байти?',answer:16,unit:'бітів'},
-{type:'number',q:'Повідомлення має 30 символів, кожен закодовано 2 байтами. Скільки байтів займає повідомлення без додаткових даних?',answer:60,unit:'байтів'},
-{type:'multi',q:'Вибери назви програм-архіваторів.',options:['7-Zip','Paint','WinRAR','Блокнот'],answer:[0,2]},
-{type:'single',q:'Що означає розархівування?',options:['Видобування файлів з архіву','Зміна яскравості екрана','Видалення всіх файлів','Заміна монітора'],answer:[0]},
-{type:'order',q:'Упорядкуй дії для видобування файлів із ZIP-архіву засобами Windows.',items:['Знайти потрібний ZIP-архів','Натиснути на ньому правою кнопкою миші','Вибрати «Видобути все»','Указати папку призначення та підтвердити видобування'],answer:[0,1,2,3]},
-{type:'multi',q:'У яких ситуаціях може знадобитися резервна копія?',options:['Випадково видалили важливий файл','Зламався диск із документами','Змінили колір робочого столу','Зменшили гучність колонок'],answer:[0,1]},
-{type:'order',q:'Розташуй одиниці обсягу даних від найбільшої до найменшої.',items:['Гігабайт','Мегабайт','Кілобайт','Байт'],answer:[0,1,2,3]},
-{type:'match',q:'Поєднай пристрій із призначенням.',left:['Мікрофон','Принтер','USB-флешнакопичувач'],options:['Друкування на папері','Зберігання та перенесення файлів','Введення звуку'],answer:[2,0,1]},
-{type:'multi',q:'Які пристрої вводять дані в комп’ютер?',options:['Вебкамера','Колонки','Клавіатура','Принтер'],answer:[0,2]},
-{type:'multi',q:'За допомогою яких пристроїв комп’ютер виводить зображення?',options:['Монітор','Сканер','Проєктор','Мікрофон'],answer:[0,2]},
-{type:'single',q:'Який пристрій призначений для довготривалого зберігання даних?',options:['Миша','Клавіатура','SSD','Навушники'],answer:[2]},
-{type:'match',q:'Поєднай комп’ютер із типовим застосуванням.',left:['Стаціонарний ПК','Ноутбук','Суперкомп’ютер'],options:['Складні наукові розрахунки','Робота за постійним робочим місцем з окремим монітором','Навчання в дорозі завдяки вбудованому екрану, клавіатурі та акумулятору'],answer:[1,2,0]}
+const block = (code, value) => ({code,value});
+const parts = [
+['Перший варіант',[
+block("Radiobutton(text='15% річних', variable=choice, value=1).pack()",{type:'radio',group:'choice',id:1}),
+block("Radiobutton(text='15% річних', variable=choice, value=2).pack()",{type:'radio',group:'choice',id:2}),
+block("Checkbutton(text='15% річних', variable=choice).pack()",{type:'check',group:'choice',id:1})]],
+['Другий варіант',[
+block("Radiobutton(text='17% річних', variable=other, value=2).pack()",{type:'radio',group:'other',id:2}),
+block("Radiobutton(text='17% річних', variable=choice, value=2).pack()",{type:'radio',group:'choice',id:2}),
+block("Radiobutton(text='17% річних', variable=choice, value=1).pack()",{type:'radio',group:'choice',id:1})]],
+['Читання суми',[
+block('s = amount.get()',s=>String(s)),
+block('s = int(amount.get())',s=>s),
+block('s = float(amount.get())',s=>s)]],
+['Дія без вибору',[
+block("total = 'Обери депозит'",'Обери депозит'),
+block("total = s",s=>s),
+block("total = 0",0)]],
+['Перша умова',[
+block('if choice.get() == 2:',{id:2}),
+block('if choice.get() == 1:',{id:1}),
+block('if choice.get():',{id:'any'})]],
+['Перше обчислення',[
+block('total = s * 1.15 ** 2',s=>s * 1.15 ** 2),
+block('total = s * 1.34',s=>s * 1.34),
+block('total = s * 1.17 ** 2',s=>s * 1.17 ** 2),
+block('total = s * 1.15\ntotal *= 1.15',s=>s * 1.15 * 1.15),
+block('total = s + 2 * s * 0.17',s=>s + 2 * s * .17)]],
+['Друга умова',[
+block('elif choice.get() == 2:',{id:2,chain:true}),
+block('if choice.get() == 1:',{id:1}),
+block('else:',{id:'else',chain:true}),
+block('elif choice.get() == 1:',{id:1,chain:true}),
+block('if choice.get() == 2:',{id:2})]],
+['Друге обчислення',[
+block('total = s * 1.15 ** 2',s=>s * 1.15 ** 2),
+block('total = s + 2 * s * 0.17',s=>s + 2 * s * .17),
+block('total = s * 1.30',s=>s * 1.30),
+block('total = s * 1.34',s=>s * 1.34),
+block('total = s * 1.15\ntotal *= 1.15',s=>s * 1.15 * 1.15)]],
+['Виведення',[
+block("result['text'] = str(total)",'raw'),
+block("result['text'] = (f'{total:.2f} грн'\n                  if isinstance(total, (int, float)) else total)",'fixed'),
+block("print(total)",'console'),
+block("if isinstance(total, (int, float)):\n    result['text'] = str(round(total, 2)) + ' грн'\nelse:\n    result['text'] = total",'rounded')]],
+['Подія кнопки',[
+block("Button(text='Обчислити', command=click()).pack()",'early'),
+block("Button(text='Обчислити').pack()",'none'),
+block("Button(text='Обчислити', command=click).pack()",'click')]]
 ];
-const BANK=BASE.concat(ALTERNATIVES);let QUESTIONS=BASE;
-const KEY='informatics-8-test-v2';let state=null,tick=null;const $=id=>document.getElementById(id);const hints={single:'Вибери одну відповідь.',multi:'Вибери дві правильні відповіді.',match:'Обери відповідність для кожного рядка.',order:'Кнопками ↑ і ↓ установи порядок зверху вниз.',number:'Впиши лише ціле число.'};
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){$('error').textContent='Браузер не дозволяє зберегти відповіді. Не перезавантажуй сторінку.'}}
-function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function answered(q,a,i){return q.type==='order'?!!state.touched[i]:q.type==='match'?a.every(v=>v!==null):q.type==='number'?a!=='':a.length>0}
-function update(){let n=QUESTIONS.filter((q,i)=>answered(q,state.answers[i],i)).length;$('progressText').textContent=`Виконано ${n} із 16`;$('progress').value=n}
-function render(){ $('intro').classList.add('hidden');$('work').classList.remove('hidden');$('quiz').innerHTML='';QUESTIONS.forEach((q,i)=>{let f=document.createElement('fieldset');f.id='q'+i;f.innerHTML=`<legend>${i+1}. ${esc(q.q)}</legend><p class="hint">${hints[q.type]}</p>`;let a=state.answers[i];if(q.type==='single'||q.type==='multi'){state.options[i].forEach(j=>{let l=document.createElement('label');l.className='option';let inp=document.createElement('input');inp.type=q.type==='multi'?'checkbox':'radio';inp.name='q'+i;inp.checked=a.includes(j);inp.onchange=()=>{state.answers[i]=q.type==='single'?[j]:Array.from(f.querySelectorAll('input:checked')).map(e=>+e.value);save();update()};inp.value=j;l.append(inp,document.createTextNode(q.options[j]));f.append(l)})}else if(q.type==='number'){let inp=document.createElement('input');inp.type='number';inp.min=0;inp.step=1;inp.value=a;inp.setAttribute('aria-label','Відповідь на завдання '+(i+1));inp.oninput=()=>{state.answers[i]=inp.value;save();update()};f.append(inp,document.createTextNode(' '+q.unit))}else if(q.type==='match'){q.left.forEach((s,j)=>{let row=document.createElement('label');row.className='row';row.innerHTML=`<span>${esc(s)}</span>`;let sel=document.createElement('select');sel.innerHTML='<option value="">Обери…</option>'+state.options[i].map(k=>`<option value="${k}">${esc(q.options[k])}</option>`).join('');sel.value=a[j]===null?'':a[j];sel.onchange=()=>{state.answers[i][j]=sel.value===''?null:+sel.value;save();update()};row.append(sel);f.append(row)})}else{let ul=document.createElement('ol');ul.className='order';a.forEach((k,j)=>{let li=document.createElement('li');li.innerHTML=`<span>${j+1}. ${esc(q.items[k])}</span>`;[-1,1].forEach(d=>{let b=document.createElement('button');b.type='button';b.className='secondary';b.textContent=d<0?'↑':'↓';b.setAttribute('aria-label',(d<0?'Вгору: ':'Вниз: ')+q.items[k]);b.disabled=j+d<0||j+d>=a.length;b.onclick=()=>{[a[j],a[j+d]]=[a[j+d],a[j]];state.touched[i]=true;save();let y=scrollY;render();scrollTo(0,y);$('q'+i).querySelectorAll('.order li')[j+d].querySelectorAll('button')[d<0?0:1].focus({preventScroll:true})};li.append(b)});ul.append(li)});f.append(ul);let l=document.createElement('label');l.className='option';let c=document.createElement('input');c.type='checkbox';c.checked=!!state.touched[i];c.onchange=()=>{state.touched[i]=c.checked;save();update()};l.append(c,document.createTextNode('Порядок перевірено'));f.append(l)}$('quiz').append(f)});update();clock()}
-function score(q,a){if(q.type==='number')return a!==''&&Number(a)===q.answer?1:0;if(q.type==='match'||q.type==='order')return a.filter((v,j)=>v===q.answer[j]).length/q.answer.length;return a.length===q.answer.length&&a.every(v=>q.answer.includes(v))?1:0}
-function clock(){if(!state||state.done)return;let seconds=Math.max(0,Math.ceil((state.deadline-Date.now())/1000));$('timer').textContent=`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;if(seconds===0)finish(true)}
-function finish(auto=false){if(state.done)return;state.done=true;state.ended=new Date().toISOString();state.auto=auto;save();clearInterval(tick);showResult()}
-function report(){let points=QUESTIONS.map((q,i)=>(q.type==='order'&&!state.touched[i]?0:score(q,state.answers[i])));let sum=points.reduce((a,b)=>a+b,0),grade=Math.max(1,Math.round(sum/16*12));let details=QUESTIONS.map((q,i)=>{let a=state.answers[i],txt=q.type==='number'?(a||'—'):q.type==='match'?q.left.map((s,j)=>s+': '+(a[j]===null?'—':q.options[a[j]])).join('; '):q.type==='order'?a.map(k=>q.items[k]).join(' → '):a.map(k=>q.options[k]).join('; ')||'—';return `${i+1}. ${q.q}\nВідповідь: ${txt}\nБал: ${points[i].toFixed(2)} / 1`}).join('\n\n');return {grade,text:`Контрольна робота з інформатики • 8 клас\nУчень: ${state.name}\nКлас: ${state.className}\nВаріант: ${state.ids.map(i=>i+1).join('-')}\nЗавершено: ${new Date(state.ended).toLocaleString('uk-UA')}\nБалів: ${sum.toFixed(2)} / 16\nОцінка: ${grade} / 12\n${state.auto?'Час вичерпано. Роботу завершено автоматично.':'Роботу завершив учень.'}\n\n${details}`}}
-function showResult(){ $('intro').classList.add('hidden');$('work').classList.add('hidden');$('result').classList.remove('hidden');let r=report();$('resultName').textContent=state.name+' · '+state.className;$('grade').textContent=r.grade+' / 12';$('summary').textContent=r.text.split('\n\n')[0]}
-$('startForm').onsubmit=e=>{e.preventDefault();let name=$('student').value.trim(),cl=$('className').value.trim();if(!name||!cl)return;QUESTIONS=shuffle(BASE.map((_,i)=>BANK[i+(Math.random()<0.5?0:16)]));state={ids:QUESTIONS.map(q=>BANK.indexOf(q)),name,className:cl,deadline:Date.now()+25*60*1000,done:false,touched:{},options:QUESTIONS.map(q=>q.options?shuffle(q.options.map((_,i)=>i)):[]),answers:QUESTIONS.map(q=>q.type==='number'?'':q.type==='match'?q.left.map(()=>null):q.type==='order'?shuffle(q.items.map((_,i)=>i)):[])};save();render();tick=setInterval(clock,1000)};
-$('finish').onclick=()=>{let n=QUESTIONS.filter((q,i)=>!answered(q,state.answers[i],i)).length;if(confirm(n?`Не виконано завдань: ${n}. Усе одно завершити?`:'Завершити роботу й отримати оцінку?')){finish();scrollTo(0,0)}};
-$('download').onclick=()=>{let blob=new Blob(['\ufeff'+report().text],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='informatyka-'+state.name.replace(/[^\p{L}\p{N}_-]+/gu,'_')+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
-$('reset').onclick=()=>{if(confirm('Результат збережено? Очистити поточну спробу та почати нову?')){try{localStorage.removeItem(KEY)}catch(e){}location.reload()}};
-try{state=JSON.parse(localStorage.getItem(KEY));if(state){QUESTIONS=state.ids.map(i=>BANK[i]);if(state.done)showResult();else{render();tick=setInterval(clock,1000)}}}catch(e){state=null}
-</script></html>
+const cap = {title:'Практична робота № 5 · Депозит на два роки', points:8};
+tasks.push(cap);
+const capOrder = [2,3,4,5,6,7,8,0,1,9];
+const capIndent = [4,4,4,8,4,8,4,0,0,0];
+const capText = [
+'from tkinter import *\n\ndef click():\n',
+'\nroot = Tk()\nroot.title("Депозит на два роки")\nchoice = IntVar()\nother = IntVar()\nLabel(text="Початкова сума (грн)").pack()\namount = Entry()\namount.pack()\n',
+'\nresult = Label()\nresult.pack()\n',
+'\nroot.mainloop()'
+];
+const capCases = [
+[1000,0],[1000,1],[1000,2],[275,1],[275,2],[99,1],[1000000,2]
+];
+function chosen(values){return parts.map(([,options],i)=>options[values[i]]?.value);}
+function toggle(state, control) {
+  if(control.type==='check') state[control.group]=state[control.group]===1?0:1;
+  else state[control.group]=control.id;
+}
+function active(state, control){return state[control.group]===control.id;}
+function roundedMoney(value) {
+  // Match Python's tie-to-even for exactly representable half cents.
+  return value % .25 === .125 ? ((Math.trunc(value*100)-Math.trunc(value*100)%2)/100).toFixed(2) : value.toFixed(2);
+}
+function runProgram(blocks,state,amount) {
+  const [,,read,initial,first,formula1,second,formula2,output,event]=blocks;
+  if(event==='early') return {error:'Обробник запускається під час створення кнопки. Поле в цей момент порожнє.'};
+  if(event!=='click') return {error:'Кнопка не запускає обробник.'};
+  const s=read(amount);
+  let total=typeof initial==='function'?initial(s):initial;
+  const matches=(condition)=>condition.id==='any'?Boolean(state.choice):condition.id===state.choice||condition.id==='else';
+  const passed=matches(first);
+  if(passed || ((!second.chain || !passed) && matches(second))){
+    if(typeof s!=='number') return {error:'Поле повернуло текст. Для обчислення потрібне число.'};
+  }
+  if(passed) total=formula1(s);
+  if((!second.chain||!passed)&&matches(second)) total=formula2(s);
+  if(output==='console') return {error:'Результат іде в консоль. Напис у вікні порожній.'};
+  if(output==='raw'||typeof total!=='number') return {text:String(total)};
+  const fixed=roundedMoney(total);
+  return {text:(output==='fixed'?fixed:String(Number(fixed)))+' грн'};
+}
+function projectChecks(values) {
+  const blocks=chosen(values);
+  const controls=blocks.slice(0,2);
+  const groupState={choice:0,other:0};
+  const group=controls.every(c=>c.type==='radio') && controls.every(c=>!active(groupState,c)) &&
+    controls.every((c,i)=>{
+      toggle(groupState,controls[1-i]);
+      toggle(groupState,c);
+      return active(groupState,c)&&!active(groupState,controls[1-i]);
+    });
+  const cases=capCases.map(([amount,plan],index)=>{
+    const state={choice:0,other:0};
+    if(plan) {
+      if(index>2) toggle(state,controls[2-plan]);
+      toggle(state,controls[plan-1]);
+    }
+    const expected=plan ? ((amount*(plan===1?13225:13400))/10000).toFixed(2)+' грн':'Обери депозит';
+    const run=runProgram(blocks,state,amount);
+    const comparable=text=>text?.replace(/(\d+)(?:\.(\d+))? грн$/,(_,whole,decimal='')=>whole+'.'+decimal.padEnd(2,'0')+' грн');
+    return {label:amount+' грн · '+(plan?plan===1?'15%':'17%':'без вибору'),expected,actual:run.text??run.error,
+      pass:comparable(run.text)===expected};
+  });
+  return [{label:'Початково порожня група з одним вибором',pass:group},...cases];
+}
+
+const KEY='grade8-tk-branching-33-35-v1';
+const fresh=()=>({
+  stage:0,profile:null,index:0,answers:tasks.map(()=>[]),history:tasks.map(()=>[]),test:[],practice:null,result:null
+});
+let state=fresh(), storageOK=true;
+try {
+  const saved=JSON.parse(localStorage.getItem(KEY));
+  if(saved?.history?.length===tasks.length && saved.answers?.length===tasks.length &&
+    [0,1,2,3].includes(saved.stage)) state=saved;
+} catch {storageOK=false;}
+const $=id=>document.getElementById(id);
+function save(){
+  try {localStorage.setItem(KEY,JSON.stringify(state));storageOK=true;}
+  catch {storageOK=false;}
+  $('storage').hidden=storageOK;
+}
+function element(tag,text,className){
+  const node=document.createElement(tag);
+  if(text!==undefined) node.textContent=text;
+  if(className) node.className=className;
+  return node;
+}
+const append=(parent,tag,text,className)=>parent.appendChild(element(tag,text,className));
+function button(text,action,className){
+  const node=element('button',text,className);
+  node.type='button';
+  node.addEventListener('click',action);
+  return node;
+}
+function go(stage){
+  state.stage=stage;
+  save();
+  render(true);
+}
+const stages=['identity','practice','test','results'];
+function render(focus=false){
+  stages.forEach((name,i)=>{
+    $(name).hidden=i!==state.stage;
+    const step=$('stages').children[i];
+    if(i===state.stage) step.setAttribute('aria-current','step');
+    else step.removeAttribute('aria-current');
+  });
+  $('storage').hidden=storageOK;
+  if(state.stage===1) renderTask();
+  if(state.stage===2) renderTest();
+  if(state.stage===3) renderResults();
+  if(focus){
+    window.scrollTo(0,0);
+    $(stages[state.stage]).querySelector('h1').focus({preventScroll:true});
+  }
+}
+$('identityForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const form=event.currentTarget;
+  const surname=$('surname').value.trim(), firstName=$('firstName').value.trim();
+  for(const [id,value] of [['surname',surname],['firstName',firstName]]){
+    $(id).setCustomValidity(value?'':'Введи дані без порожніх пробілів.');
+  }
+  if(!form.reportValidity()) return;
+  state.profile={surname,firstName,className:$('className').value};
+  go(1);
+});
+for(const id of ['surname','firstName']) $(id).addEventListener('input',()=>$(id).setCustomValidity(''));
+const current=()=>tasks[state.index];
+const rows=()=>state.history[state.index];
+const solved=index=>state.history[index].some(row=>row.passed===row.total);
+const matchesDraft=row=>row.signature===JSON.stringify(state.answers[state.index]);
+let activePicker=null;
+const picker=$('picker');
+function openPicker(trigger,field,options,label,format){
+  activePicker=trigger;
+  $('pickerTitle').textContent=label;
+  $('choices').replaceChildren();
+  options.forEach((option,index)=>{
+    const control=button(option,()=>{
+      if(state.answers[state.index][field]!==index){
+        state.answers[state.index][field]=index;
+        updateBlank(trigger,index,format(option));
+        showFeedback();
+        updateSim();
+        save();
+      }
+      picker.close();
+    },'option');
+    if(state.answers[state.index][field]===index) control.classList.add('selected');
+    $('choices').append(control);
+  });
+  picker.showModal();
+  ($('choices').querySelector('.selected')||$('choices').firstElementChild).focus();
+}
+picker.addEventListener('close',()=>activePicker?.focus());
+function updateBlank(node,choice,text){
+  node.textContent=text??node.dataset.placeholder;
+  node.classList.toggle('filled',choice!==undefined);
+  node.setAttribute('aria-label',node.dataset.label+(text===undefined?' · обрати фрагмент':' · '+text));
+}
+function codeBlank(parent,field,options,label,multiline=false,indent=0){
+  const value=state.answers[state.index][field];
+  const format=text=>text.replace(/\n/g,'\n'+' '.repeat(indent));
+  const node=button('',()=>openPicker(node,field,options,label,format),multiline?'blank block':'blank');
+  node.dataset.label=label;
+  node.dataset.placeholder=multiline?'‹'+label+'›':'···';
+  updateBlank(node,value,options[value]===undefined?undefined:format(options[value]));
+  node.disabled=solved(state.index);
+  parent.append(node);
+}
+function capCode(parent){
+  parent.append(capText[0]);
+  capOrder.forEach((part,i)=>{
+    if(i===7) parent.append(capText[1]);
+    if(i===9) parent.append(capText[2]);
+    parent.append(' '.repeat(capIndent[i]));
+    const [label,options]=parts[part];
+    codeBlank(parent,part,options.map(item=>item.code),label,true,capIndent[i]);
+    parent.append('\n');
+  });
+  parent.append(capText[3]);
+}
+function miniCode(parent,t){
+  const pieces=t.code.split('@@');
+  pieces.forEach((piece,i)=>{
+    parent.append(piece);
+    if(i<t.fields.length) codeBlank(parent,i,t.fields[i].options,'Пропуск '+(i+1));
+  });
+}
+function renderTask(){
+  const t=current(),isCap=t===cap;
+  const count=state.history.filter(h=>h.length).length;
+  $('taskCount').textContent='Перевірено '+count+' із '+tasks.length;
+  $('progress').max=tasks.length;
+  $('progress').value=count;
+  $('taskNav').replaceChildren();
+  tasks.forEach((entry,i)=>{
+    const nav=button(entry===cap?'П':String(i+1),()=>selectTask(i));
+    nav.setAttribute('aria-label',(entry===cap?'Підсумковий проєкт':'Завдання '+(i+1))+(
+      solved(i)?', зараховано':state.history[i].length?', перевірено':''));
+    nav.classList.toggle('done',solved(i));
+    if(i===state.index) nav.setAttribute('aria-current','step');
+    $('taskNav').append(nav);
+  });
+  $('taskTitle').textContent=t.title;
+  $('eyebrow').textContent=isCap?'ПІДСУМКОВИЙ ПРОЄКТ · 8 БАЛІВ':'МІНІЗАВДАННЯ '+(state.index+1)+' / '+(tasks.length-1)+' · 2 БАЛИ';
+  $('instruction').textContent=isCap
+    ?'Збери повну програму. Користувач вводить цілу суму від 1 до 1 000 000 грн і може вибрати лише один депозит. Під час відкриття жоден депозит не вибрано.'
+    :t.goal;
+  $('projectBrief').hidden=!isCap;
+  $('snippetNote').hidden=isCap;
+  $('sim').hidden=!isCap;
+  const code=$('code');
+  code.replaceChildren();
+  if(isCap) capCode(code);
+  else miniCode(code,t);
+  $('check').disabled=solved(state.index);
+  $('prev').disabled=state.index===0;
+  $('next').textContent=isCap?'До тесту →':'Далі →';
+  showFeedback();
+  if(isCap) updateSim();
+}
+function selectTask(index){
+  state.index=index;
+  save();
+  render(true);
+}
+function showFeedback(message=''){
+  const feedback=$('feedback');
+  const last=rows().find(matchesDraft);
+  feedback.replaceChildren();
+  feedback.className='feedback';
+  if(message) append(feedback,'p',message);
+  if(last){
+    const good=last.passed===last.total;
+    feedback.classList.add(good?'good':'needs-work');
+    append(feedback,'p',good?'Зараховано. Усі частини виконано правильно.':
+      'Правильно '+last.passed+' із '+last.total+'. Можеш змінити рішення й перевірити ще раз.');
+    if(last.cases){
+      const list=append(feedback,'ul');
+      last.cases.forEach(c=>{
+        append(list,'li',(c.pass?'✓ ':'✗ ')+c.label+(c.expected?' · очікуємо «'+c.expected+'», отримано «'+c.actual+'»':''));
+      });
+    } else if(last.hints.length) {
+      const list=append(feedback,'ul');
+      last.hints.forEach(text=>append(list,'li',text));
+    }
+  }
+  const errors=rows().filter(row=>row.passed<row.total).length;
+  if(errors) append(feedback,'p','Помилкових перевірок у завданні — '+errors+'.','small');
+}
+$('check').addEventListener('click',()=>{
+  if(solved(state.index)) return;
+  const t=current(),values=state.answers[state.index];
+  const length=t===cap?parts.length:t.fields.length;
+  if(Array.from({length},(_,i)=>values[i]).some(value=>value==null)){
+    showFeedback('Заповни всі пропуски, щоб перевірити рішення.');
+    return;
+  }
+  if(rows().some(matchesDraft)){
+    showFeedback('Це рішення вже перевірено. Повторна перевірка не змінює результат.');
+    return;
+  }
+  const row={signature:JSON.stringify(values),total:length,hints:[]};
+  if(t===cap){
+    row.cases=projectChecks(values);
+    row.total=row.cases.length;
+    row.passed=row.cases.filter(c=>c.pass).length;
+  } else {
+    row.hints=t.fields.flatMap((f,i)=>f.valid.includes(f.options[values[i]])?[]:['Пропуск '+(i+1)+'. '+f.hint]);
+    row.passed=length-row.hints.length;
+  }
+  rows().push(row);
+  save();
+  if(row.passed===row.total) $('next').focus();
+  renderTask();
+});
+$('prev').addEventListener('click',()=>selectTask(state.index-1));
+$('next').addEventListener('click',()=>{
+  if(current()!==cap){selectTask(state.index+1);return;}
+  const unchecked=state.history.findIndex(h=>h.length===0);
+  if(unchecked!==-1){
+    selectTask(unchecked);
+    showFeedback('Щоб перейти до тесту, перевір хоча б одне рішення в кожному завданні.');
+    return;
+  }
+  state.practice=practiceGrade();
+  go(2);
+});
+const grade=(raw,max)=>Math.max(1,Math.min(12,Math.floor(12*raw/max+.5)));
+function practiceGrade(){
+  const details=tasks.map((t,i)=>{
+    const history=state.history[i];
+    const attempts=history.map((row,n)=>t.points*row.passed/row.total*[1,.9,.8][Math.min(n,2)]);
+    const index=history.findIndex(row=>row.passed===row.total);
+    return {title:t.title,max:t.points,earned:index<0?Math.max(0,...attempts):attempts[index],
+      errors:history.filter(row=>row.passed<row.total).length};
+  });
+  const raw=details.reduce((sum,row)=>sum+row.earned,0),max=details.reduce((sum,row)=>sum+row.max,0);
+  return {raw,max,grade:grade(raw,max),details};
+}
+let simValues={choice:0,other:0},simKey='';
+function updateSim(){
+  if(current()!==cap) return;
+  const values=state.answers[state.index], key=JSON.stringify(values.slice(0,2));
+  if(key!==simKey) simValues={choice:0,other:0};
+  simKey=key;
+  const blocks=chosen(values);
+  const area=$('simControls');
+  area.replaceChildren();
+  blocks.slice(0,2).forEach((control,i)=>{
+    if(!control) return;
+    const option=button((active(simValues,control)?(control.type==='check'?'☑ ':'◉ '):(control.type==='check'?'☐ ':'○ '))+
+      (i===0?'15% річних':'17% річних'),()=>{
+      toggle(simValues,control);
+      updateSim();
+      area.querySelector('[data-control="'+i+'"]')?.focus();
+    });
+    option.dataset.control=i;
+    option.setAttribute('aria-pressed',active(simValues,control));
+    area.append(option);
+  });
+  $('simOutput').textContent=blocks.includes(undefined)?'Додай усі блоки, щоб запустити модель.':'Натисни «Обчислити», щоб побачити результат.';
+}
+$('simRun').addEventListener('click',()=>{
+  const blocks=chosen(state.answers[state.index]);
+  if(blocks.includes(undefined)) return;
+  const raw=$('simAmount').value, amount=Number(raw);
+  if(!/^\d+$/.test(raw)||amount<1||amount>1000000){
+    $('simOutput').textContent='Введи ціле число від 1 до 1 000 000.';
+    return;
+  }
+  const run=runProgram(blocks,simValues,amount);
+  $('simOutput').textContent=run.text??run.error;
+});
+$('simAmount').addEventListener('input',()=>{
+  if(!chosen(state.answers[state.index]).includes(undefined))
+    $('simOutput').textContent='Натисни «Обчислити», щоб побачити результат.';
+});
+function renderTest(){
+  const area=$('questions');
+  area.replaceChildren();
+  questions.forEach(([title,options],i)=>{
+    const box=append(area,'fieldset',undefined,'question');
+    append(box,'legend',(i+1)+'. '+title);
+    options.forEach((option,j)=>{
+      const label=append(box,'label',undefined,'test-option');
+      const input=append(label,'input');
+      input.type='radio';
+      input.name='q'+i;
+      input.required=true;
+      input.checked=state.test[i]===j;
+      input.addEventListener('change',()=>{state.test[i]=j;save();});
+      append(label,'span',option);
+    });
+  });
+}
+$('testForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const details=questions.map(([, ,answer],i)=>state.test[i]===answer);
+  const raw=details.filter(Boolean).length,max=questions.length;
+  state.result={raw,max,grade:grade(raw,max),details};
+  go(3);
+});
+const num=n=>n.toLocaleString('uk-UA',{maximumFractionDigits:2});
+const fullName=()=>state.profile.surname+' '+state.profile.firstName+' · '+state.profile.className;
+function renderResults(){
+  $('profileResult').textContent=fullName();
+  const area=$('scores');
+  area.replaceChildren();
+  for(const [title,score] of [['Практика',state.practice],['Підсумковий тест',state.result]]){
+    const card=append(area,'div',undefined,'score-card');
+    append(card,'h2',title);
+    append(card,'div',score.grade+' / 12','score');
+    append(card,'p',num(score.raw)+' із '+score.max+' балів','small');
+  }
+  const detail=$('detail');
+  detail.replaceChildren();
+  state.practice.details.forEach((row,i)=>{
+    const item=append(detail,'div',undefined,'result-row');
+    append(item,'strong',(i+1)+'. '+row.title+' · '+num(row.earned)+' / '+row.max);
+    append(item,'p','Помилкових перевірок — '+row.errors+'.');
+  });
+  const review=$('testReview');
+  review.replaceChildren();
+  questions.forEach(([title,options,correct],i)=>{
+    const item=append(review,'div',undefined,'result-row');
+    append(item,'strong',(i+1)+'. '+title);
+    append(item,'p','Твоя відповідь — '+options[state.test[i]]+'. '+(state.result.details[i]?'Правильно.':'Правильна відповідь — '+options[correct]+'.'));
+  });
+}
+$('export').addEventListener('click',()=>{
+  const report=document.implementation.createHTMLDocument('Результати · Прапорці та перемикачі');
+  report.documentElement.lang='uk';
+  const meta=report.createElement('meta');
+  meta.charset='utf-8';
+  report.head.prepend(meta);
+  const style=report.createElement('style');
+  style.textContent='body{font:16px/1.5 system-ui;max-width:800px;margin:40px auto;padding:0 20px} h2{margin-bottom:0}';
+  report.head.append(style);
+  append(report.body,'h1','Прапорці та перемикачі · Результати');
+  append(report.body,'p',fullName());
+  append(report.body,'p','Практика — '+state.practice.grade+'/12 · Тест — '+state.result.grade+'/12');
+  append(report.body,'p','Звіт сформовано в браузері учня.');
+  append(report.body,'h2','Практика');
+  report.body.append($('detail').cloneNode(true));
+  append(report.body,'h2','Тест');
+  report.body.append($('testReview').cloneNode(true));
+  const url=URL.createObjectURL(new Blob(['<!doctype html>\n'+report.documentElement.outerHTML],{type:'text/html;charset=utf-8'}));
+  const link=element('a');
+  link.href=url;
+  link.download='rezultaty-uroky-33-35.html';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+});
+$('newWork').addEventListener('click',()=>{
+  if(!confirm('Почати нову роботу? Поточний результат буде замінено. За потреби спочатку завантаж звіт.')) return;
+  state=fresh();
+  $('identityForm').reset();
+  go(0);
+});
+render();
+
+</script>
+</body>
+</html>
