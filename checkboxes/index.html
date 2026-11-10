@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f4f5f1">
-<title>Прапорці та перемикачі · Тренажер 8 класу</title>
+<title>Проєкти з розгалуженнями · Уроки 31–34</title>
 <style>
 
 :root{font-family:'Segoe UI',system-ui,sans-serif;color:#213a4a;background:#f4f5f1;--blue:#225bc7;--line:#d9e0e2;--muted:#5c6d74}
@@ -94,9 +94,9 @@ dialog::backdrop{background:#132b44a0}
 .option{font-family:Consolas,'Courier New',monospace}
 .option.selected{border-color:var(--blue);background:#edf3ff}
 #sim{margin-top:20px;padding:16px;border:1px solid #d3dbe1;border-radius:12px;background:#f0f2f5}
-#simControls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
-#simControls button[aria-pressed=true]{background:#e3edff;border-color:#3972bc}
-#simAmount{max-width:220px}
+.sim-controls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.sim-controls button[aria-pressed=true]{background:#e3edff;border-color:#3972bc}
+#sim h3{font-size:14px;margin:14px 0 4px}
 #simOutput{margin-bottom:0;overflow-wrap:anywhere}
 .question{margin:20px 0 0;padding:10px 0 14px;border:0;border-bottom:1px solid var(--line);min-inline-size:0}
 .question legend{font-weight:700;line-height:1.5;padding:0}
@@ -114,21 +114,21 @@ summary{cursor:pointer;font-weight:650;padding:8px 0}
 </head>
 <body><main>
 <header>
-  <span class="brand">Прапорці та перемикачі</span>
+  <span class="brand">Проєкти з розгалуженнями</span>
   <ol id="stages" aria-label="Етапи роботи"><li>Дані</li><li>Практика</li><li>Тест</li><li>Результати</li></ol>
 </header>
 <div id="storage" class="warning" role="status" hidden>Браузер не зберігає прогрес. Залиш сторінку відкритою і після тесту завантаж звіт.</div>
 <noscript><p class="warning">Увімкни JavaScript у браузері, щоб працювати з тренажером.</p></noscript>
 <section id="identity" class="panel narrow" hidden>
-  <p class="eyebrow">ІНФОРМАТИКА · 8 КЛАС · УРОКИ 33–35</p>
-  <h1 tabindex="-1">Прапорці та перемикачі в Python</h1>
-  <p>Заповни пропуски в коді, збери програму з розгалуженнями й пройди окремий тест.</p>
+  <p class="eyebrow">ІНФОРМАТИКА · 8 КЛАС · УРОКИ 31–34</p>
+  <h1 tabindex="-1">Розгалуження, прапорці та перемикачі в Python</h1>
+  <p>Спочатку опрацюй проєкти уроків 31–34, потім повтори попередні теми. Збери проєкт із прапорцями та перемикачами й пройди окремий тест.</p>
   <form id="identityForm">
     <label for="surname">Прізвище</label><input id="surname" autocomplete="family-name" maxlength="60" required>
     <label for="firstName">Ім’я</label><input id="firstName" autocomplete="given-name" maxlength="60" required>
     <label for="className">Клас</label>
     <select id="className" required><option value="">Обери клас</option><option>8-А</option><option>8-Б</option><option>8-Г</option><option>8-Д</option><option>8-Є</option></select>
-    <p class="small">2 × 40 хв. Орієнтир — 35 хв на 14 мінізавдань, 25 хв на проєкт, 15 хв на тест і 5 хв на звіт.</p>
+    <p class="small">2 × 40 хв. Орієнтир — 45 хв на 29 мінізавдань, 15 хв на проєкт, 15 хв на тест і 5 хв на звіт.</p>
     <p class="policy">Практика й тест мають окремі оцінки з 12 балів. За правильні частини рішення зараховується 100% на першій перевірці, 90% на другій і 80% на наступних. Можна змінювати фрагменти й випробовувати проєкт до перевірки.</p>
     <button type="submit" class="primary">Почати практику →</button>
   </form>
@@ -141,21 +141,19 @@ summary{cursor:pointer;font-weight:650;padding:8px 0}
     <h1 id="taskTitle" tabindex="-1"></h1>
     <p id="instruction" class="instruction"></p>
     <div id="projectBrief" class="brief" hidden>
-      <ul>
-        <li><strong>15% річних.</strong> Після першого року додай відсотки до вкладу. Другий рік нараховує відсотки на нову суму.</li>
-        <li><strong>17% річних.</strong> В обидва роки відсотки обчислюються від початкового вкладу.</li>
-        <li>Після натискання «Обчислити» покажи суму за два роки в написі з одиницею «грн». Округли до сотих. Якщо варіант не вибрано, покажи «Обери депозит».</li>
-      </ul>
-      <p>Для 1000 грн очікуємо 1322.50 грн за 15% і 1340.00 грн за 17%. Склади інтерфейс, дві гілки й обробник кнопки. Після перевірки побачиш результати для кількох сценаріїв.</p>
+      <p>За середній бал понад 10 нарахуй 10 балів рейтингу, понад 7 до 10 включно — 7, понад 4 до 7 включно — 4, до 4 включно — 1.</p>
+      <p>За кожне вибране заняття додай 2 бали. Заняття можна вибирати незалежно. Після натискання «Обчислити» покажи суму в написі. Якщо діапазон ще не вибрано, покажи «Обери діапазон».</p>
+      <p>Приклади. Середній бал 10 і два заняття дають рейтинг 11. Середній бал 4 без занять дає 1.</p>
     </div>
     <p id="snippetNote" class="small">Натисни пропуск і вибери фрагмент. У фрагментах вікно Tkinter та змінні, створені раніше, уже доступні.</p>
     <pre id="code" aria-label="Код Python"></pre>
     <aside id="sim" hidden>
       <h2>Симуляція вікна Tkinter</h2>
       <p class="small">Браузер моделює поточні блоки конструктора. Дії в симуляції не впливають на оцінку.</p>
-      <label for="simAmount">Початкова сума (грн)</label>
-      <input id="simAmount" inputmode="numeric" value="1000" maxlength="7">
-      <div id="simControls" aria-label="Варіанти депозиту"></div>
+      <h3>Середній бал</h3>
+      <div id="simRanges" class="sim-controls"></div>
+      <h3>Додаткові заняття</h3>
+      <div id="simExtras" class="sim-controls"></div>
       <button id="simRun" type="button">Обчислити</button>
       <p id="simOutput" role="status"></p>
     </aside>
@@ -169,7 +167,7 @@ summary{cursor:pointer;font-weight:650;padding:8px 0}
 </section>
 <section id="test" class="panel narrow test-panel" hidden>
   <h1 tabindex="-1">Підсумковий тест</h1>
-  <p>Вибери одну відповідь у кожному з 8 запитань. Після завершення побачиш окрему оцінку й пояснення, де була помилка.</p>
+  <p>Вибери одну відповідь у кожному з 12 запитань. Після завершення побачиш окрему оцінку й пояснення, де була помилка.</p>
   <form id="testForm"><div id="questions"></div><button type="submit" class="primary">Завершити тест</button></form>
 </section>
 <section id="results" class="panel" hidden>
@@ -191,7 +189,52 @@ summary{cursor:pointer;font-weight:650;padding:8px 0}
 
 const slot = (valid, options, hint) => ({valid, options, hint});
 const task = (title, goal, code, fields) => ({title, goal, code, fields, points:2});
-const tasks = [
+const words = [
+task('Зв’яжи поле зі змінною','Поле має передавати введений текст у змінну str_var. Доповни створення поля.',
+"str_var = tkinter.StringVar()\nedit = tkinter.Entry(window, @@)\nedit.pack()",[
+slot(['textvariable=str_var'],['text=str_var','textvariable=str_var','textvariable=str_var.get()','textvariable:str_var'],'Потрібен зв’язок із самою змінною, щоб вона оновлювалася разом із полем.')]),
+task('Прочитай текст після натискання','Кнопка має класифікувати саме той текст, що є в полі в момент натискання.',
+"def button_click():\n    s = @@\n    if ' ' in s:\n        result = 'Кілька слів'\n    else:\n        result = 'Одне слово'",[
+slot(['str_var.get()','edit.get()'],['str_var.set()','edit.get()','str_var.get(','str_var.get()'],'У цьому проєкті поле edit пов’язане зі str_var. Поточний текст можна прочитати з будь-якого з них.')]),
+task('Одне слово чи кілька','Введено принаймні одне слово. Слова відділено звичайними пробілами, на краях рядка пробілів немає. Вибери умову, яка спрацьовує для «добрий день» і не спрацьовує для «привіт».',
+"s = str_var.get()\nif @@:\n    message = 'Кілька слів'\nelse:\n    message = 'Одне слово'",[
+slot(["' ' in s",'len(s.split()) > 1'],["s == ' '","len(s.split()) > 1","' ' not in s","' ' inside s","' ' in s"],'Перевір наявність розділювача або порахуй слова після розбиття рядка.')]),
+task('Покажи висновок у діалозі','Покажи діалогове вікно із заголовком «Результат» і повідомленням, яке програма щойно визначила.',
+"import tkinter.messagebox\n# message містить висновок\n@@",[
+slot(["tkinter.messagebox.showinfo('Результат', message)"],["print(message)","tkinter.messagebox.showinfo(message, 'Результат')","tkinter.messagebox.showinfo('Результат', message)","tkinter.messagebox.showinfo('Результат' message)"],'Перший аргумент задає заголовок, другий — текст діалогу.')]),
+task('Відрізни порожній рядок','Змінна s містить текст без крайніх пробілів або порожній рядок. Перший висновок має спрацювати тільки для непорожнього тексту без жодного пробілу.',
+"if @@:\n    message = 'Одне слово'\nelse:\n    message = 'Порожньо або кілька слів'",[
+slot(["s != '' and ' ' not in s","not (s == '' or ' ' in s)"],["s != '' or ' ' not in s","not (s == '' or ' ' in s)","s != '' && ' ' not in s","s != '' and ' ' not in s"],'Потрібно одночасно виключити порожній рядок і рядок із пробілом.')]),
+task('Вікно працює після запуску','Усі віджети вже створено й розміщено. Залиш вікно відкритим, щоб воно реагувало на натискання.',
+"window = tkinter.Tk()\n# Тут створено й розміщено віджети\n@@",[
+slot(['window.mainloop()'],['window.mainloop','window.update()','window.mainloop()','window.mainloop('],'Запусти цикл обробки подій, який очікує на дії користувача.')])
+];
+const equations = [
+task('Зчитай коефіцієнти','Поля enA, enB, enC містять числа, зокрема дробові. Збережи їх у a, b, c в тому самому порядку.',
+"values = [enA.get(), enB.get(), enC.get()]\na, b, c = @@",[
+slot(['map(float, values)','[float(v) for v in values]'],['map(str, values)','[float(v) for v in values]','map(int, values)','map(float values)','map(float, values)'],'Три прочитані рядки мають стати числами, які підтримують дробову частину.')]),
+task('Знайди дискримінант','Для рівняння ax² + bx + c = 0 обчисли дискримінант. Для a = 1, b = −3, c = 2 очікуємо 1.',
+"D = @@",[
+slot(['b ** 2 - 4 * a * c','b * b - 4 * a * c'],['b ** 2 + 4 * a * c','b * b - 4 * a * c','b ** 2 - 4ac','b ** 2 - 4 * a * c'],'Від квадрата b відніми добуток 4, a і c.')]),
+task('Три можливі висновки','Коли D додатний, є два дійсні корені. Коли D дорівнює нулю, є один. Коли D від’ємний, дійсних коренів немає.',
+"@@:\n    message = 'Два корені'\nelif @@:\n    message = 'Один корінь'\nelse:\n    message = 'Дійсних коренів немає'",[
+slot(['if D > 0'],['if D >= 0','if D > 0','if D < 0','if D => 0'],'Нуль має потрапити в окрему гілку.'),
+slot(['D == 0','0 == D','D >= 0'],['D = 0','D < 0','D >= 0','0 == D','D == 0'],'До цієї гілки потрапляють тільки D ≤ 0. Умова має відокремити нуль від від’ємних чисел.')]),
+task('Пара коренів','За D > 0 і a ≠ 0 знайди другий корінь. Наприклад, для a = 1, b = −3, D = 1 перший корінь дорівнює 2, другий — 1.',
+"from math import sqrt\nif D > 0:\n    x1 = (-b + sqrt(D)) / (2 * a)\n    x2 = @@",[
+slot(['(-b - sqrt(D)) / (2 * a)'],['-b - sqrt(D) / (2 * a)','(-b + sqrt(D)) / (2 * a)','(-b - sqrt(D)) / (2a)','(-b - sqrt(D)) / (2 * a)'],'Поділи весь чисельник із відніманням кореня з D на 2a.')]),
+task('Один корінь','За D = 0 і a ≠ 0 обчисли єдиний корінь, округли до сотих і виведи в діалозі. Для a = 2, b = −4 очікуємо 1.',
+"from tkinter.messagebox import showinfo\nif D == 0:\n    x = @@\n    showinfo('Один корінь', str(round(x, 2)))",[
+slot(['-b / (2 * a)','(-b) / (2 * a)'],['-b / 2 * a','(-b) / (2 * a)','b / (2 * a)','-b / (2a)','-b / (2 * a)'],'Зміни знак b і поділи на весь добуток 2a.')]),
+task('Запусти пошук коренів кнопкою','Рівняння слід обчислити, коли учень натисне «Знайти корені». До натискання введені дані ще не читаються.',
+"button = Button(text='Знайти корені', @@)\nbutton.pack()",[
+slot(['command=btn_click'],['command=btn_click()','text=btn_click','command==btn_click','command=btn_click'],'Передай обробник кнопці, щоб вона могла викликати його після натискання.')])
+];
+const rating = task('Межі рейтингу','За середній бал більший за 10 дай 10 рейтингових балів. За середній бал більший за 7 і до 10 включно дай 7. За більший за 4 і до 7 включно дай 4. У решті випадків дай 1.',
+"if average > 10:\n    s = 10\n@@:\n    s = 7\nelif average > 4:\n    s = 4\nelse:\n    s = 1",[
+slot(['elif average > 7','elif 7 < average <= 10'],['elif average >= 7','elif 7 < average <= 10','elif average > 4','else average > 7','elif average > 7'],'Перша гілка вже обробила значення понад 10. Перевір, куди мають потрапити рівно 7 і рівно 10.')]);
+
+const checkboxes = [
 task('Стан позначки','Змінна color має зберігати логічне значення: істину, коли варіант відмічено, і хибу, коли позначку знято.',
 "color = @@\nCheckbutton(text='Колір', variable=color).pack()",[
 slot(['BooleanVar()'],['IntVar()','BooleanVar()','BooleanVar(','StringVar()'],'Потрібна спеціальна змінна логічного типу, пов’язана з елементом вікна.')]),
@@ -208,6 +251,12 @@ slot(['color.get()','color.get() == True'],['not color.get()','color.get() == Tr
 task('Дві дії за одне натискання','Якщо є обидві позначки, зміни і заголовок, і колір. Якщо вибрано лише одну, застосуй лише відповідну зміну.',
 "def click():\n    if title.get():\n        root.title('Заголовок змінено')\n    @@ color.get():\n        root['bg'] = 'red'",[
 slot(['if'],['elif','if','else if'],'Простеж виконання, коли обидві умови істинні.')]),
+task('Дозвіл за двох умов','Покажи «Дозволено», якщо є позначка agree і введений вік не менший за 14. Вік — ціле число. Для 14 із позначкою дозвіл має спрацювати.',
+"age = int(entry.get())\nif @@:\n    label['text'] = 'Дозволено'\nelse:\n    label['text'] = 'Перевір дані'",[
+slot(['agree.get() and age >= 14','age >= 14 and agree.get()'],['agree.get() or age >= 14','age >= 14 and agree.get()','agree.get() and age > 14','agree.get() && age >= 14','agree.get() and age >= 14'],'Потрібні обидві умови, а вік 14 належить до дозволених.')])
+];
+
+const radios = [
 task('Лише один варіант','Вибір «Колір» має знімати вибір «Розміри» й навпаки. Доповни рядок для варіанта «Колір».',
 "choice = IntVar()\nother = IntVar()\n@@(text='Колір', variable=@@, value=1).pack()\nRadiobutton(text='Розміри', variable=choice, value=2).pack()",[
 slot(['Radiobutton'],['Checkbutton','Radio-button','Radiobutton'],'Елементи одного типу мають працювати як взаємовиключна група.'),
@@ -218,154 +267,156 @@ slot(['2'],['1','2','==2','0'],'Початковий вибір відповід
 task('Третя дія лише за вибором','У групі значення 1 означає заголовок, 2 — колір, 3 — розміри. Якщо вибору немає (0), кнопка нічого не змінює.',
 "def click():\n    if choice.get() == 1:\n        root.title('Заголовок змінено')\n    elif choice.get() == 2:\n        root['bg'] = 'red'\n    @@\n        root.geometry('600x300')",[
 slot(['elif choice.get() == 3:','if choice.get() == 3:'],['else:','if choice.get() == 3:','elif choice.get() = 3:','elif choice.get() == 3:'],'Перевір останню гілку окремо для 3 та 0.')]),
+task('Пара перемикачів для кожної групи','У вікні дві незалежні групи — тема й мова. Вибір «Темна» прибирає «Світла», а вибір «English» прибирає «Українська». Зміна мови не впливає на тему.',
+"theme = IntVar()\nlang = IntVar()\nRadiobutton(text='Світла', variable=theme, value=1).pack()\nRadiobutton(text='Темна', variable=theme, value=2).pack()\nRadiobutton(text='Українська', variable=lang, value=1).pack()\nRadiobutton(text='English', @@, value=2).pack()",[
+slot(['variable=lang'],['variable=theme','variable=lang.get()','variable=lang','variable:lang'],'Під’єднай останній елемент до змінної його групи.')]),
+rating,
 task('Прапорці додають бали','За групою перемикачів уже визначено базовий рейтинг. Кожна з двох позначок додає по 2 бали. Наприклад, за бази 7 і двох позначок покажи 11.',
 "def click():\n    s = base_score(choice.get())\n    if clubs.get():\n        s += 2\n    if sports.get():\n        @@\n    lab['text'] = str(s)",[
-slot(['s += 2','s = s + 2'],['s = 2','s = s + 2','s =+ 2','s += 2','s + = 2'],'Збережи вже накопичені бали й додай ще два.')]),
-task('Ділення з перевіркою','Прочитай дробове число a з поля. Якщо знаменник 2a − b нульовий, покажи повідомлення. Інакше обчисли вираз.',
-"def click():\n    a = @@\n    b = float(entry2.get())\n    d = 2 * a - b\n    if @@:\n        z = 'Ділення на нуль'\n    else:\n        z = (a + 3 * b) / d\n    entry3.delete(0, END)\n    entry3.insert(0, z)",[
-slot(['float(entry1.get())'],['entry1.get()','int(entry1.get())','float(entry1.get())','float entry1.get()'],'Перетвори текст поля на число з підтримкою дробової частини.'),
-slot(['d == 0','0 == d'],['d != 0','d = 0','0 == d','d == 0'],'Перевір a = 2, b = 4 і a = 2, b = 3.')]),
-task('Найменше з чотирьох','Після перших двох чисел best уже містить менше з них. Перевір третє й четверте числа, щоб best містила найменше з усіх чотирьох.',
-"best = min(v1, v2)\nif v3 < best:\n    best = v3\nif @@:\n    best = v4\nlab['text'] = str(best)",[
-slot(['v4 < best','best > v4','v4 <= best'],['best > v4','v4 > best','v4 = best','v4 <= best','v4 < best'],'Четверте число може замінити поточний мінімум, якщо воно менше. За рівності результат той самий.')]),
-task('Кнопка запускає обчислення','Обробник click має запускатися при натисканні «Обчислити». Під час створення кнопки обчислення ще не виконується.',
-"button = Button(text='Обчислити', @@)\nbutton.pack()",[
-slot(['command=click'],['command=click()','command==click','command=click','state=click'],'Передай саму функцію кнопці.')]),
-task('Депозит із капіталізацією','Після першого року до суми додають 15%. У другому році 15% нараховують на оновлену суму. Для 1000 грн отримай 1322.50 грн.',
-"if choice.get() == 1:\n    total = @@\n    result['text'] = str(round(total, 2))",[
-slot(['s * 1.15 ** 2','s * 1.15 * 1.15'],['s * 1.30','s * 1.15 * 1.15','s * 1.15 ^ 2','s * 1.15 ** 2','s * 1.15 **'], 'До оновленої суми застосуй той самий множник ще раз.')]),
-task('Депозит без капіталізації','За кожен із двох років додають 17% від початкової суми. Для 1000 грн отримай 1340 грн.',
-"if choice.get() == 2:\n    total = @@\n    result['text'] = str(round(total, 2))",[
-slot(['s + 2 * s * 0.17','s * 1.34'],['s * 1.17 ** 2','s * 1.34','s + 2s * 0.17','s + 2 * s * 0.17'],'Обидва річні нарахування мають однакову базу.')])
-];
-const questions = [
-['Які елементи дають змогу вибрати два незалежні варіанти одночасно?',['Прапорці','Перемикачі однієї групи','Написи'],0],
-['Яке значення поверне color.get(), якщо color — змінна BooleanVar, а позначку знято?',['0 як текст','True','False'],2],
-['Що утворює групу перемикачів, у якій можна вибрати один варіант?',['Різні variable і однакові value','Спільна variable і різні value','Однакові text'],1],
-['У групі значення 1, 2 і 3. Як одразу вибрати варіант зі значенням 2?',['choice.get(2)','choice.set(2)','choice.set(1)'],1],
-['Обидва прапорці вибрано. Спочатку if перевіряє перший, а elif — другий. Які дії виконуються?',['Обидві','Тільки дія другого','Тільки дія першого'],2],
-['Який запис передає обробник click кнопці для запуску під час натискання?',['command=click','command=click()','command==click'],0],
-['Для a = 3 та b = 6 знаменник дорівнює 2 * a − b. Що зробить програма з перевіркою з практики?',['Обчислить частку','Покаже повідомлення про ділення на нуль','Виведе мінімум'],1],
-['Вклад 2000 грн, ставка 17%, два роки, відсотки щороку обчислюються від початкової суми. Який результат?',['2340 грн','2737.80 грн','2680 грн'],2]
+slot(['s += 2','s = s + 2'],['s = 2','s = s + 2','s =+ 2','s += 2','s + = 2'],'Збережи вже накопичені бали й додай ще два.')])
 ];
 
-const block = (code, value) => ({code,value});
-const parts = [
-['Перший варіант',[
-block("Radiobutton(text='15% річних', variable=choice, value=1).pack()",{type:'radio',group:'choice',id:1}),
-block("Radiobutton(text='15% річних', variable=choice, value=2).pack()",{type:'radio',group:'choice',id:2}),
-block("Checkbutton(text='15% річних', variable=choice).pack()",{type:'check',group:'choice',id:1})]],
-['Другий варіант',[
-block("Radiobutton(text='17% річних', variable=other, value=2).pack()",{type:'radio',group:'other',id:2}),
-block("Radiobutton(text='17% річних', variable=choice, value=2).pack()",{type:'radio',group:'choice',id:2}),
-block("Radiobutton(text='17% річних', variable=choice, value=1).pack()",{type:'radio',group:'choice',id:1})]],
-['Читання суми',[
-block('s = amount.get()',s=>String(s)),
-block('s = int(amount.get())',s=>s),
-block('s = float(amount.get())',s=>s)]],
-['Дія без вибору',[
-block("total = 'Обери депозит'",'Обери депозит'),
-block("total = s",s=>s),
-block("total = 0",0)]],
-['Перша умова',[
-block('if choice.get() == 2:',{id:2}),
-block('if choice.get() == 1:',{id:1}),
-block('if choice.get():',{id:'any'})]],
-['Перше обчислення',[
-block('total = s * 1.15 ** 2',s=>s * 1.15 ** 2),
-block('total = s * 1.34',s=>s * 1.34),
-block('total = s * 1.17 ** 2',s=>s * 1.17 ** 2),
-block('total = s * 1.15\ntotal *= 1.15',s=>s * 1.15 * 1.15),
-block('total = s + 2 * s * 0.17',s=>s + 2 * s * .17)]],
-['Друга умова',[
-block('elif choice.get() == 2:',{id:2,chain:true}),
-block('if choice.get() == 1:',{id:1}),
-block('else:',{id:'else',chain:true}),
-block('elif choice.get() == 1:',{id:1,chain:true}),
-block('if choice.get() == 2:',{id:2})]],
-['Друге обчислення',[
-block('total = s * 1.15 ** 2',s=>s * 1.15 ** 2),
-block('total = s + 2 * s * 0.17',s=>s + 2 * s * .17),
-block('total = s * 1.30',s=>s * 1.30),
-block('total = s * 1.34',s=>s * 1.34),
-block('total = s * 1.15\ntotal *= 1.15',s=>s * 1.15 * 1.15)]],
-['Виведення',[
-block("result['text'] = str(total)",'raw'),
-block("result['text'] = (f'{total:.2f} грн'\n                  if isinstance(total, (int, float)) else total)",'fixed'),
-block("print(total)",'console'),
-block("if isinstance(total, (int, float)):\n    result['text'] = str(round(total, 2)) + ' грн'\nelse:\n    result['text'] = total",'rounded')]],
-['Подія кнопки',[
-block("Button(text='Обчислити', command=click()).pack()",'early'),
-block("Button(text='Обчислити').pack()",'none'),
-block("Button(text='Обчислити', command=click).pack()",'click')]]
+const recap = [
+task('Напис за позначкою','Поле name містить ім’я. Після натискання кнопки напис показує «Вітаю, » та ім’я, якщо є позначка greet. Інакше показує «Очікую».',
+"def click():\n    if greet.get():\n        label['text'] = 'Вітаю, ' + @@\n    else:\n        label['text'] = 'Очікую'",[
+slot(['name.get()'],['name','name.get(','name.get()','str(name)'],'Зчитай текст із поля, щоб додати ім’я до привітання.')]),
+task('Заміни результат у полі','У групі режим 2 записує «Готово» в поле out. У полі може вже бути старий текст. Після натискання в режимі 2 має залишитися тільки «Готово», а інші режими поле не змінюють.',
+"def click():\n    if mode.get() == 2:\n        @@\n        out.insert(0, 'Готово')",[
+slot(['out.delete(0, END)','out.delete(0, "end")'],['out.delete(0)','out.delete(0, "end")','out.delete(0, END)','out.delete(0 END)'],'Перед вставленням прибери всі символи старого результату.')]),
+task('Показати суму або різницю','Два поля можуть містити дробові числа. Режим 1 показує суму a і b. Режим 2 показує різницю a мінус b. За відсутності вибору нічого не змінюй.',
+"a = float(entry1.get())\nb = @@\nif mode.get() == 1:\n    label['text'] = str(a + b)\nelif mode.get() == 2:\n    label['text'] = str(@@)",[
+slot(['float(entry2.get())'],['float(entry1.get())','entry2.get()','float(entry2.get())','float entry2.get()'],'Друге число треба прочитати з другого поля й перетворити на дробове.'),
+slot(['a - b'],['b - a','a + b','a - b','a − b'],'Перевір a = 2.5 і b = 4.0. Результат має бути −1.5.')]),
+task('Мінімум або максимум','Список marks непорожній. Перемикач 1 показує мінімальну оцінку, перемикач 2 — максимальну. Для [7, 4, 10] очікуємо відповідно 4 і 10. Без вибору напис не змінюй.',
+"if mode.get() == 1:\n    label['text'] = str(@@)\nelif mode.get() == 2:\n    label['text'] = str(@@)",[
+slot(['min(marks)'],['marks[0]','min(marks)','max(marks)','min[marks)'],'Потрібен мінімум усього списку, незалежно від порядку.'),
+slot(['max(marks)'],['max(marks)','len(marks)','marks[-1]','max[marks)'],'Потрібен максимум усього списку, а не останній елемент.')]),
+task('Відбери числа й підсумуй','Пройди список цілих чисел. Без позначки перенеси всі числа, а з позначкою «Лише додатні» перенеси тільки числа, більші за нуль. Збережи порядок і повтори. Для [5, −2, 5, 3, 0] з позначкою має залишитися [5, 5, 3], а напис має показати 13.',
+"selected = []\nfor score in scores:\n    if @@:\n        @@\nlabel['text'] = str(sum(selected))",[
+slot(['not positive_only.get() or score > 0','score > 0 or not positive_only.get()'],['positive_only.get() or score > 0','score > 0 or not positive_only.get()','not positive_only.get() or score >= 0','not positive_only.get() || score > 0','not positive_only.get() or score > 0'],'Без позначки пропускай усі числа. З позначкою нуль і від’ємні числа не мають потрапити в список.'),
+slot(['selected.append(score)','selected.insert(len(selected), score)'],['selected.insert(0, score)','selected.append(score)','selected.insert(len(selected), score)','selected.append[score]','selected.append(score'], 'Додавай значення в кінець списку, щоб зберегти порядок.')])
 ];
-const cap = {title:'Практична робота № 5 · Депозит на два роки', points:8};
+
+const tasks=[
+  ['УРОК 31 · СЛОВО ЧИ КІЛЬКА',words],
+  ['УРОК 32 · КВАДРАТНЕ РІВНЯННЯ',equations],
+  ['УРОК 33 · ПРАПОРЦІ',checkboxes],
+  ['УРОК 34 · ПЕРЕМИКАЧІ',radios],
+  ['ПОВТОРЕННЯ ПОПЕРЕДНІХ УРОКІВ',recap]
+].flatMap(([unit,entries])=>entries.map(entry=>({...entry,unit})));
+
+const questions = [
+['Що визначить умова «пробіл є в рядку» для тексту «добрий день»?',['Одне слово','Кілька слів','Порожній рядок'],1],
+['Який запис оновлює змінну str_var, коли учень редагує поле?',['Entry(text=str_var)','Entry(textvariable=str_var.get())','Entry(textvariable=str_var)'],2],
+['У рядку s порожньо. Чому умова s != "" and " " not in s хибна?',['Перша частина хибна, а для and потрібні обидві істинні','У порожньому рядку завжди є пробіл','and повертає істину для будь-якого рядка'],0],
+['Який дискримінант для a = 1, b = −3, c = 2?',['−1','1','17'],1],
+['Що має показати програма, якщо D від’ємний?',['Два дійсні корені','Один дійсний корінь','Дійсних коренів немає'],2],
+['Який єдиний корінь для a = 2, b = −4, якщо D = 0?',['1','−1','4'],0],
+['Що повертає BooleanVar.get(), якщо позначку знято?',['True','False','Рядок "False"'],1],
+['Два прапорці вибрано. Спочатку if перевіряє перший, потім окремий if — другий. Які дії виконаються?',['Тільки перша','Тільки друга','Обидві'],2],
+['Що робить перемикачі взаємовиключними в одній групі?',['Одна спільна variable та різні value','Різні variable та однакові value','Однакові підписи'],0],
+['Група має значення 1, 2 і 3. Як встановити початковий вибір другого варіанта?',['choice.get(2)','choice.set(2)','choice.set(1)'],1],
+['Середній бал рівно 7. Додаткових занять немає. Який базовий рейтинг?',['7','1','4'],2],
+['Два поля містять «2.5» та «4.0». У режимі різниці від першого числа віднімаємо друге. Що покаже напис?',['−1.5','1.5','6.5'],0]
+];
+
+const block = (code,value)=>({code,value});
+const ranges=['Більше 10','Більше 7, до 10 включно','Більше 4, до 7 включно','До 4 включно'];
+const extras=['Предметні гуртки','Спортивні секції','Театральна студія'];
+const scores=[10,7,4,1];
+const radioOptions=(groups,ids)=>block(
+  ranges.map((label,i)=>"Radiobutton(text='"+label+"', variable="+groups[i]+", value="+ids[i]+").pack()").join('\n'),
+  ranges.map((label,i)=>({label,group:groups[i],id:ids[i]}))
+);
+const flagOptions=(groups)=>block(
+  extras.map((label,i)=>"Checkbutton(text='"+label+"', variable="+groups[i]+").pack()").join('\n'),
+  groups.map((group,i)=>({label:extras[i],group}))
+);
+const gradeBranch=(prefix,id,score)=>block(prefix+' band.get() == '+id+':\n    s = '+score,{id,score});
+const bonus=(second='if',points=2)=>block(
+  'if clubs.get():\n    s += '+points+'\n'+second+' sports.get():\n    s += '+points+'\n'+second+' theater.get():\n    s += '+points,
+  {exclusive:second==='elif',points}
+);
+const parts=[
+['Група варіантів',[
+radioOptions(['band','band','band','other'],[1,2,3,4]),
+radioOptions(['band','band','band','band'],[1,2,3,4]),
+radioOptions(['band','band','band','band'],[1,2,3,3])]],
+['Додаткові заняття',[
+flagOptions(['clubs','clubs','clubs']),
+flagOptions(['clubs','sports','theater'])]],
+['Перша гілка',[gradeBranch('if',1,7),gradeBranch('if',1,10),gradeBranch('if',2,7)]],
+['Друга гілка',[gradeBranch('elif',2,7),gradeBranch('elif',2,10),gradeBranch('elif',1,10)]],
+['Третя гілка',[gradeBranch('elif',3,1),gradeBranch('elif',3,4),gradeBranch('elif',4,1)]],
+['Четверта гілка',[gradeBranch('elif',3,4),gradeBranch('elif',4,1),gradeBranch('elif',4,4)]],
+['Випадок без вибору',[
+block("result['text'] = 'Обери діапазон'\nreturn",true),
+block("s = 0",false),
+block("result['text'] = 'Обери діапазон'\ns = 0",false)]],
+['Нарахування бонусів',[
+bonus('elif'),bonus('if',5),bonus(),
+block('if theater.get():\n    s = s + 2\nif sports.get():\n    s = s + 2\nif clubs.get():\n    s = s + 2',{exclusive:false,points:2})]],
+['Виведення результату',[
+block("print(s)",false),
+block("result.config(text=str(s))",true),
+block("result['text'] = str(s)",true)]],
+['Подія кнопки',[
+block("Button(text='Обчислити', command=click()).pack()", 'early'),
+block("Button(text='Обчислити', command=click).pack()", 'click'),
+block("Button(text='Обчислити').pack()", 'none')]]
+];
+const cap={title:'Підсумковий проєкт · Рейтинг учня',points:8,unit:'ПРОЄКТ · УРОКИ 31–34'};
 tasks.push(cap);
-const capOrder = [2,3,4,5,6,7,8,0,1,9];
-const capIndent = [4,4,4,8,4,8,4,0,0,0];
-const capText = [
+const capOrder=[2,3,4,5,6,7,8,0,1,9];
+const capIndent=[4,4,4,4,8,4,4,0,0,0];
+const capText=[
 'from tkinter import *\n\ndef click():\n',
-'\nroot = Tk()\nroot.title("Депозит на два роки")\nchoice = IntVar()\nother = IntVar()\nLabel(text="Початкова сума (грн)").pack()\namount = Entry()\namount.pack()\n',
+'\nroot = Tk()\nroot.title("Рейтинг учня")\nband = IntVar()\nother = IntVar()\nclubs = BooleanVar()\nsports = BooleanVar()\ntheater = BooleanVar()\n',
 '\nresult = Label()\nresult.pack()\n',
 '\nroot.mainloop()'
 ];
-const capCases = [
-[1000,0],[1000,1],[1000,2],[275,1],[275,2],[99,1],[1000000,2]
+const capCases=[
+[null,0],[null,5],[0,0],[1,1],[2,3],[3,4],[1,7]
 ];
-function chosen(values){return parts.map(([,options],i)=>options[values[i]]?.value);}
-function toggle(state, control) {
-  if(control.type==='check') state[control.group]=state[control.group]===1?0:1;
-  else state[control.group]=control.id;
+const chosen=values=>parts.map(([,options],i)=>options[values[i]]?.value);
+const initialSelection=()=>({band:0,other:0,clubs:false,sports:false,theater:false});
+const active=(state,control)=>'id' in control?state[control.group]===control.id:state[control.group];
+function toggle(state,control){
+  state[control.group]='id' in control?control.id:!state[control.group];
 }
-function active(state, control){return state[control.group]===control.id;}
-function roundedMoney(value) {
-  // Match Python's tie-to-even for exactly representable half cents.
-  return value % .25 === .125 ? ((Math.trunc(value*100)-Math.trunc(value*100)%2)/100).toFixed(2) : value.toFixed(2);
+function runProgram(blocks,selection){
+  const [,, ...logic]=blocks;
+  const [first,second,third,fourth,requireBand,bonus,output,event]=logic;
+  if(event==='none') return 'Кнопка не запускає обчислення';
+  if(event==='early') return 'Обчислення запускається ще до натискання';
+  const branch=[first,second,third,fourth].find(item=>item.id===selection.band);
+  if(!branch&&requireBand) return 'Обери діапазон';
+  const bonusCount=['clubs','sports','theater'].filter(group=>selection[group]).length;
+  const total=(branch?.score??0)+bonus.points*(bonus.exclusive?Math.min(1,bonusCount):bonusCount);
+  return output?String(total):'Напис порожній, бо результат іде в консоль';
 }
-function runProgram(blocks,state,amount) {
-  const [,,read,initial,first,formula1,second,formula2,output,event]=blocks;
-  if(event==='early') return {error:'Обробник запускається під час створення кнопки. Поле в цей момент порожнє.'};
-  if(event!=='click') return {error:'Кнопка не запускає обробник.'};
-  const s=read(amount);
-  let total=typeof initial==='function'?initial(s):initial;
-  const matches=(condition)=>condition.id==='any'?Boolean(state.choice):condition.id===state.choice||condition.id==='else';
-  const passed=matches(first);
-  if(passed || ((!second.chain || !passed) && matches(second))){
-    if(typeof s!=='number') return {error:'Поле повернуло текст. Для обчислення потрібне число.'};
-  }
-  if(passed) total=formula1(s);
-  if((!second.chain||!passed)&&matches(second)) total=formula2(s);
-  if(output==='console') return {error:'Результат іде в консоль. Напис у вікні порожній.'};
-  if(output==='raw'||typeof total!=='number') return {text:String(total)};
-  const fixed=roundedMoney(total);
-  return {text:(output==='fixed'?fixed:String(Number(fixed)))+' грн'};
-}
-function projectChecks(values) {
+function projectChecks(values){
   const blocks=chosen(values);
-  const controls=blocks.slice(0,2);
-  const groupState={choice:0,other:0};
-  const group=controls.every(c=>c.type==='radio') && controls.every(c=>!active(groupState,c)) &&
-    controls.every((c,i)=>{
-      toggle(groupState,controls[1-i]);
-      toggle(groupState,c);
-      return active(groupState,c)&&!active(groupState,controls[1-i]);
-    });
-  const cases=capCases.map(([amount,plan],index)=>{
-    const state={choice:0,other:0};
-    if(plan) {
-      if(index>2) toggle(state,controls[2-plan]);
-      toggle(state,controls[plan-1]);
+  const [radios,flags]=blocks;
+  const group=radios.every((radio,i)=>radios.every((other,j)=>i===j||
+    radio.group===other.group&&radio.id!==other.id)) &&
+    new Set(flags.map(flag=>flag.group)).size===flags.length;
+  const cases=capCases.map(([band,mask])=>{
+    const selection=initialSelection();
+    if(band!==null){
+      toggle(selection,radios[(band+1)%radios.length]);
+      toggle(selection,radios[band]);
     }
-    const expected=plan ? ((amount*(plan===1?13225:13400))/10000).toFixed(2)+' грн':'Обери депозит';
-    const run=runProgram(blocks,state,amount);
-    const comparable=text=>text?.replace(/(\d+)(?:\.(\d+))? грн$/,(_,whole,decimal='')=>whole+'.'+decimal.padEnd(2,'0')+' грн');
-    return {label:amount+' грн · '+(plan?plan===1?'15%':'17%':'без вибору'),expected,actual:run.text??run.error,
-      pass:comparable(run.text)===expected};
+    flags.forEach((control,i)=>{if(mask&(1<<i)) toggle(selection,control);});
+    const labels=extras.filter((_,i)=>mask&(1<<i));
+    const expected=band===null?'Обери діапазон':String(scores[band]+2*labels.length);
+    const actual=runProgram(blocks,selection);
+    return {label:(ranges[band]??'Без діапазону')+' · '+(labels.join(', ')||'без занять'),expected,actual,pass:actual===expected};
   });
-  return [{label:'Початково порожня група з одним вибором',pass:group},...cases];
+  return [{label:'Взаємовиключні діапазони та незалежні позначки занять',pass:group},...cases];
 }
 
-const KEY='grade8-tk-branching-33-35-v1';
+const KEY='grade8-branching-31-34-v1';
 const fresh=()=>({
   stage:0,profile:null,index:0,answers:tasks.map(()=>[]),history:tasks.map(()=>[]),test:[],practice:null,result:null
 });
@@ -474,6 +525,7 @@ function codeBlank(parent,field,options,label,multiline=false,indent=0){
 function capCode(parent){
   parent.append(capText[0]);
   capOrder.forEach((part,i)=>{
+    if(part===6) parent.append('    else:\n');
     if(i===7) parent.append(capText[1]);
     if(i===9) parent.append(capText[2]);
     parent.append(' '.repeat(capIndent[i]));
@@ -506,9 +558,9 @@ function renderTask(){
     $('taskNav').append(nav);
   });
   $('taskTitle').textContent=t.title;
-  $('eyebrow').textContent=isCap?'ПІДСУМКОВИЙ ПРОЄКТ · 8 БАЛІВ':'МІНІЗАВДАННЯ '+(state.index+1)+' / '+(tasks.length-1)+' · 2 БАЛИ';
+  $('eyebrow').textContent=t.unit+(isCap?' · 8 БАЛІВ':' · '+(state.index+1)+' / '+(tasks.length-1)+' · 2 БАЛИ');
   $('instruction').textContent=isCap
-    ?'Збери повну програму. Користувач вводить цілу суму від 1 до 1 000 000 грн і може вибрати лише один депозит. Під час відкриття жоден депозит не вибрано.'
+    ?'Збери програму для підрахунку рейтингу. Користувач вибирає один діапазон середнього бала й позначає відвідувані заняття. Під час запуску всі варіанти порожні.'
     :t.goal;
   $('projectBrief').hidden=!isCap;
   $('snippetNote').hidden=isCap;
@@ -602,43 +654,34 @@ function practiceGrade(){
   const raw=details.reduce((sum,row)=>sum+row.earned,0),max=details.reduce((sum,row)=>sum+row.max,0);
   return {raw,max,grade:grade(raw,max),details};
 }
-let simValues={choice:0,other:0},simKey='';
+let simValues=initialSelection(),simKey='';
 function updateSim(){
   if(current()!==cap) return;
-  const values=state.answers[state.index], key=JSON.stringify(values.slice(0,2));
-  if(key!==simKey) simValues={choice:0,other:0};
+  const values=state.answers[state.index],key=JSON.stringify(values.slice(0,2));
+  if(key!==simKey) simValues=initialSelection();
   simKey=key;
   const blocks=chosen(values);
-  const area=$('simControls');
-  area.replaceChildren();
-  blocks.slice(0,2).forEach((control,i)=>{
-    if(!control) return;
-    const option=button((active(simValues,control)?(control.type==='check'?'☑ ':'◉ '):(control.type==='check'?'☐ ':'○ '))+
-      (i===0?'15% річних':'17% річних'),()=>{
-      toggle(simValues,control);
-      updateSim();
-      area.querySelector('[data-control="'+i+'"]')?.focus();
+  const lists=[$('simRanges'),$('simExtras')];
+  lists.forEach((area,list)=>{
+    area.replaceChildren();
+    blocks[list]?.forEach((control,i)=>{
+      const marked=active(simValues,control);
+      const icon=list===0?(marked?'◉':'○'):(marked?'☑':'☐');
+      const option=button(icon+' '+control.label,()=>{
+        toggle(simValues,control);
+        updateSim();
+        area.children[i]?.focus();
+      });
+      option.setAttribute('aria-pressed',marked);
+      area.append(option);
     });
-    option.dataset.control=i;
-    option.setAttribute('aria-pressed',active(simValues,control));
-    area.append(option);
   });
-  $('simOutput').textContent=blocks.includes(undefined)?'Додай усі блоки, щоб запустити модель.':'Натисни «Обчислити», щоб побачити результат.';
+  $('simRun').disabled=blocks.includes(undefined);
+  $('simOutput').textContent=$('simRun').disabled?'Додай усі блоки, щоб запустити модель.':'Натисни «Обчислити», щоб побачити рейтинг.';
 }
 $('simRun').addEventListener('click',()=>{
   const blocks=chosen(state.answers[state.index]);
-  if(blocks.includes(undefined)) return;
-  const raw=$('simAmount').value, amount=Number(raw);
-  if(!/^\d+$/.test(raw)||amount<1||amount>1000000){
-    $('simOutput').textContent='Введи ціле число від 1 до 1 000 000.';
-    return;
-  }
-  const run=runProgram(blocks,simValues,amount);
-  $('simOutput').textContent=run.text??run.error;
-});
-$('simAmount').addEventListener('input',()=>{
-  if(!chosen(state.answers[state.index]).includes(undefined))
-    $('simOutput').textContent='Натисни «Обчислити», щоб побачити результат.';
+  if(!blocks.includes(undefined)) $('simOutput').textContent=runProgram(blocks,simValues);
 });
 function renderTest(){
   const area=$('questions');
@@ -693,7 +736,7 @@ function renderResults(){
   });
 }
 $('export').addEventListener('click',()=>{
-  const report=document.implementation.createHTMLDocument('Результати · Прапорці та перемикачі');
+  const report=document.implementation.createHTMLDocument('Результати · Уроки 31–34');
   report.documentElement.lang='uk';
   const meta=report.createElement('meta');
   meta.charset='utf-8';
@@ -701,7 +744,7 @@ $('export').addEventListener('click',()=>{
   const style=report.createElement('style');
   style.textContent='body{font:16px/1.5 system-ui;max-width:800px;margin:40px auto;padding:0 20px} h2{margin-bottom:0}';
   report.head.append(style);
-  append(report.body,'h1','Прапорці та перемикачі · Результати');
+  append(report.body,'h1','Уроки 31–34 · Результати');
   append(report.body,'p',fullName());
   append(report.body,'p','Практика — '+state.practice.grade+'/12 · Тест — '+state.result.grade+'/12');
   append(report.body,'p','Звіт сформовано в браузері учня.');
@@ -712,7 +755,7 @@ $('export').addEventListener('click',()=>{
   const url=URL.createObjectURL(new Blob(['<!doctype html>\n'+report.documentElement.outerHTML],{type:'text/html;charset=utf-8'}));
   const link=element('a');
   link.href=url;
-  link.download='rezultaty-uroky-33-35.html';
+  link.download='rezultaty-uroky-31-34.html';
   document.body.append(link);
   link.click();
   link.remove();
