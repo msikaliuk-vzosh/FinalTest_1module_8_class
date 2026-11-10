@@ -122,7 +122,7 @@ summary{cursor:pointer;font-weight:650;padding:8px 0}
 <section id="identity" class="panel narrow" hidden>
   <p class="eyebrow">ІНФОРМАТИКА · 8 КЛАС · УРОКИ 31–34</p>
   <h1 tabindex="-1">Розгалуження, прапорці та перемикачі в Python</h1>
-  <p>Спочатку опрацюй проєкти уроків 31–34, потім повтори попередні теми. Збери проєкт із прапорцями та перемикачами й пройди окремий тест.</p>
+  <p>Спочатку повтори розгалуження й логічні вирази (уроки 31–32). Далі попрактикуйся з прапорцями та перемикачами (уроки 33–34) і пригадай попередні теми. Збери проєкт із прапорцями та перемикачами й пройди окремий тест.</p>
   <form id="identityForm">
     <label for="surname">Прізвище</label><input id="surname" autocomplete="family-name" maxlength="60" required>
     <label for="firstName">Ім’я</label><input id="firstName" autocomplete="given-name" maxlength="60" required>
@@ -189,46 +189,48 @@ summary{cursor:pointer;font-weight:650;padding:8px 0}
 
 const slot = (valid, options, hint) => ({valid, options, hint});
 const task = (title, goal, code, fields) => ({title, goal, code, fields, points:2});
-const words = [
-task('Зв’яжи поле зі змінною','Поле має передавати введений текст у змінну str_var. Доповни створення поля.',
-"str_var = tkinter.StringVar()\nedit = tkinter.Entry(window, @@)\nedit.pack()",[
-slot(['textvariable=str_var'],['text=str_var','textvariable=str_var','textvariable=str_var.get()','textvariable:str_var'],'Потрібен зв’язок із самою змінною, щоб вона оновлювалася разом із полем.')]),
-task('Прочитай текст після натискання','Кнопка має класифікувати саме той текст, що є в полі в момент натискання.',
-"def button_click():\n    s = @@\n    if ' ' in s:\n        result = 'Кілька слів'\n    else:\n        result = 'Одне слово'",[
-slot(['str_var.get()','edit.get()'],['str_var.set()','edit.get()','str_var.get(','str_var.get()'],'У цьому проєкті поле edit пов’язане зі str_var. Поточний текст можна прочитати з будь-якого з них.')]),
+const branching31 = [
+task('Зміна лише за умови','Напис спочатку показує «Очікування». Якщо x дорівнює 10, заміни текст на «Готово». Для всіх інших значень залиш початковий текст.',
+"message = 'Очікування'\nif @@:\n    message = 'Готово'",[
+slot(['x == 10','10 == x'],['x >= 10','10 == x','x = 10','x == 10'],'Перевір x = 9, 10 і 11. Зміна потрібна тільки для 10.')]),
+task('Обидві умови потрібні','Число x має бути додатним і не перевищувати 5. Для 0 та 6 покажи «Поза межами», а для 5 — «У межах».',
+"if @@:\n    message = 'У межах'\nelse:\n    message = 'Поза межами'",[
+slot(['x > 0 and x <= 5','0 < x <= 5'],['x > 0 or x <= 5','0 < x <= 5','x > 0 && x <= 5','x > 0 and x <= 5'],'Обидві межі повинні виконуватися одночасно.')]),
 task('Одне слово чи кілька','Введено принаймні одне слово. Слова відділено звичайними пробілами, на краях рядка пробілів немає. Вибери умову, яка спрацьовує для «добрий день» і не спрацьовує для «привіт».',
 "s = str_var.get()\nif @@:\n    message = 'Кілька слів'\nelse:\n    message = 'Одне слово'",[
-slot(["' ' in s",'len(s.split()) > 1'],["s == ' '","len(s.split()) > 1","' ' not in s","' ' inside s","' ' in s"],'Перевір наявність розділювача або порахуй слова після розбиття рядка.')]),
-task('Покажи висновок у діалозі','Покажи діалогове вікно із заголовком «Результат» і повідомленням, яке програма щойно визначила.',
-"import tkinter.messagebox\n# message містить висновок\n@@",[
-slot(["tkinter.messagebox.showinfo('Результат', message)"],["print(message)","tkinter.messagebox.showinfo(message, 'Результат')","tkinter.messagebox.showinfo('Результат', message)","tkinter.messagebox.showinfo('Результат' message)"],'Перший аргумент задає заголовок, другий — текст діалогу.')]),
-task('Відрізни порожній рядок','Змінна s містить текст без крайніх пробілів або порожній рядок. Перший висновок має спрацювати тільки для непорожнього тексту без жодного пробілу.',
-"if @@:\n    message = 'Одне слово'\nelse:\n    message = 'Порожньо або кілька слів'",[
-slot(["s != '' and ' ' not in s","not (s == '' or ' ' in s)"],["s != '' or ' ' not in s","not (s == '' or ' ' in s)","s != '' && ' ' not in s","s != '' and ' ' not in s"],'Потрібно одночасно виключити порожній рядок і рядок із пробілом.')]),
-task('Вікно працює після запуску','Усі віджети вже створено й розміщено. Залиш вікно відкритим, щоб воно реагувало на натискання.',
-"window = tkinter.Tk()\n# Тут створено й розміщено віджети\n@@",[
-slot(['window.mainloop()'],['window.mainloop','window.update()','window.mainloop()','window.mainloop('],'Запусти цикл обробки подій, який очікує на дії користувача.')])
+slot(["' ' in s"],["s == ' '","' ' not in s","' ' inside s","' ' in s"],'Перевір, чи є в рядку пробіл між словами.')]),
+task('Передай висновок у напис','Після натискання кнопки покажи в написі готовий висновок зі змінної message. Напис label уже створено.',
+"def click():\n    # Тут програма визначає message\n    @@\nButton(text='Показати', command=click).pack()",[
+slot(["label['text'] = message"],["label['text'] = 'message'","label['text'] = message","label['bg'] = message","label['text'] == message"],'Зміни саме текст напису й передай значення змінної.')]),
+task('Зміни істинність','Якщо ready істинна, blocked має бути хибною. Якщо ready хибна, blocked має бути істинною.',
+"blocked = @@\nif blocked:\n    label['text'] = 'Зачекай'\nelse:\n    label['text'] = 'Готово'",[
+slot(['not ready','ready == False'],['ready','ready == False','notready','not ready'],'Перевір обидва можливі значення ready.')]),
+task('Достатньо однієї умови','Першу формулу застосуй, якщо x менше за −3 або більше за 5. Для −3 і 5 потрібна друга формула.',
+"if @@:\n    y = 2 * x - 12\nelse:\n    y = 7 - 8 * x",[
+slot(['x < -3 or x > 5','x > 5 or x < -3'],['x <= -3 or x >= 5','x > 5 or x < -3','x < -3 and x > 5','x < -3 || x > 5','x < -3 or x > 5'],'Перевір обидві межі та по одному числу за кожною з них.')])
 ];
-const equations = [
-task('Зчитай коефіцієнти','Поля enA, enB, enC містять числа, зокрема дробові. Збережи їх у a, b, c в тому самому порядку.',
-"values = [enA.get(), enB.get(), enC.get()]\na, b, c = @@",[
-slot(['map(float, values)','[float(v) for v in values]'],['map(str, values)','[float(v) for v in values]','map(int, values)','map(float values)','map(float, values)'],'Три прочитані рядки мають стати числами, які підтримують дробову частину.')]),
-task('Знайди дискримінант','Для рівняння ax² + bx + c = 0 обчисли дискримінант. Для a = 1, b = −3, c = 2 очікуємо 1.',
-"D = @@",[
-slot(['b ** 2 - 4 * a * c','b * b - 4 * a * c'],['b ** 2 + 4 * a * c','b * b - 4 * a * c','b ** 2 - 4ac','b ** 2 - 4 * a * c'],'Від квадрата b відніми добуток 4, a і c.')]),
-task('Три можливі висновки','Коли D додатний, є два дійсні корені. Коли D дорівнює нулю, є один. Коли D від’ємний, дійсних коренів немає.',
+const branching32 = [
+task('Порівняй числа з двох полів','У двох полях введено числа, зокрема дробові. Після натискання кнопки покажи «Перше більше», якщо перше число більше за друге. Для рівних чисел покажи «Перше не більше».',
+"def click():\n    a = float(entry1.get())\n    b = @@\n    if @@:\n        label['text'] = 'Перше більше'\n    else:\n        label['text'] = 'Перше не більше'",[
+slot(['float(entry2.get())'],['entry2.get()','float(entry2.get())','int(entry2.get())','float(entry2.get(]'],'Прочитай саме друге поле й перетвори його текст на число з дробовою частиною.'),
+slot(['a > b','b < a'],['a >= b','b < a','a => b','a > b'],'За a = 2.5 і b = 1.5 потрібна перша гілка. За рівності потрібна друга.')]),
+task('Перевір порядок логічних дій','Умову доступу виконано, якщо є квиток або запрошення. Якщо прохід закрито, доступу немає навіть із квитком та запрошенням.',
+"if @@:\n    label['text'] = 'Доступ є'\nelse:\n    label['text'] = 'Доступу немає'",[
+slot(['(ticket or invite) and not closed','not closed and (ticket or invite)'],['ticket or invite and not closed','not closed and (ticket or invite)','(ticket or invite) and !closed','(ticket or invite) and not closed'],'Спочатку об’єднай два способи входу. Потім перевір, чи відкритий прохід.')]),
+task('Три можливі висновки','Дискримінант D уже обчислено. Коли D додатний, є два дійсні корені. Коли D дорівнює нулю, є один. Коли D від’ємний, дійсних коренів немає.',
 "@@:\n    message = 'Два корені'\nelif @@:\n    message = 'Один корінь'\nelse:\n    message = 'Дійсних коренів немає'",[
 slot(['if D > 0'],['if D >= 0','if D > 0','if D < 0','if D => 0'],'Нуль має потрапити в окрему гілку.'),
 slot(['D == 0','0 == D','D >= 0'],['D = 0','D < 0','D >= 0','0 == D','D == 0'],'До цієї гілки потрапляють тільки D ≤ 0. Умова має відокремити нуль від від’ємних чисел.')]),
-task('Пара коренів','За D > 0 і a ≠ 0 знайди другий корінь. Наприклад, для a = 1, b = −3, D = 1 перший корінь дорівнює 2, другий — 1.',
-"from math import sqrt\nif D > 0:\n    x1 = (-b + sqrt(D)) / (2 * a)\n    x2 = @@",[
-slot(['(-b - sqrt(D)) / (2 * a)'],['-b - sqrt(D) / (2 * a)','(-b + sqrt(D)) / (2 * a)','(-b - sqrt(D)) / (2a)','(-b - sqrt(D)) / (2 * a)'],'Поділи весь чисельник із відніманням кореня з D на 2a.')]),
-task('Один корінь','За D = 0 і a ≠ 0 обчисли єдиний корінь, округли до сотих і виведи в діалозі. Для a = 2, b = −4 очікуємо 1.',
-"from tkinter.messagebox import showinfo\nif D == 0:\n    x = @@\n    showinfo('Один корінь', str(round(x, 2)))",[
-slot(['-b / (2 * a)','(-b) / (2 * a)'],['-b / 2 * a','(-b) / (2 * a)','b / (2 * a)','-b / (2a)','-b / (2 * a)'],'Зміни знак b і поділи на весь добуток 2a.')]),
-task('Запусти пошук коренів кнопкою','Рівняння слід обчислити, коли учень натисне «Знайти корені». До натискання введені дані ще не читаються.',
-"button = Button(text='Знайти корені', @@)\nbutton.pack()",[
-slot(['command=btn_click'],['command=btn_click()','text=btn_click','command==btn_click','command=btn_click'],'Передай обробник кнопці, щоб вона могла викликати його після натискання.')])
+task('Сума в написі','У двох полях введено дробові числа. Покажи їхню суму. Якщо сума від’ємна, покажи «Від’ємна сума». Для 2.5 та −2.5 покажи 0.0.',
+"a = float(entry1.get())\nb = float(entry2.get())\nz = a + b\nif z < 0:\n    label['text'] = 'Від’ємна сума'\nelse:\n    label['text'] = @@",[
+slot(['str(z)'],['str(a)','str z','str(z)','str(a - b)'],'У напис треба передати суму двох чисел як текст.')]),
+task('Кнопка оновлює повідомлення','Після натискання «Перевірити» прочитай поточний текст із поля. Якщо поле порожнє, покажи «Введи текст». Інакше покажи введений текст у написі.',
+"def click():\n    text = entry.get()\n    if text == '':\n        label['text'] = 'Введи текст'\n    else:\n        label['text'] = text\nButton(text='Перевірити', @@).pack()",[
+slot(['command=click'],['command=click()','command==click','command=click','text=click'],'Кнопка повинна викликати обробник після натискання.')]),
+task('Розгалуження перед діленням','Поля містять дробові числа a і b. Кнопка показує частку a / b. Якщо b дорівнює нулю, вона показує повідомлення і пропускає ділення.',
+"def click():\n    a = float(entry1.get())\n    b = float(entry2.get())\n    if @@:\n        label['text'] = 'Ділення на нуль'\n    else:\n        label['text'] = str(a / b)\nButton(text='Обчислити', @@).pack()",[
+slot(['b == 0','0 == b'],['b != 0','0 == b','b = 0','b == 0'],'Перевір знаменник перед діленням.'),
+slot(['command=click'],['command=click()','text=click','command==click','command=click'],'Обробник має запускатися при натисканні.')])
 ];
 const rating = task('Межі рейтингу','За середній бал більший за 10 дай 10 рейтингових балів. За середній бал більший за 7 і до 10 включно дай 7. За більший за 4 і до 7 включно дай 4. У решті випадків дай 1.',
 "if average > 10:\n    s = 10\n@@:\n    s = 7\nelif average > 4:\n    s = 4\nelse:\n    s = 1",[
@@ -298,8 +300,8 @@ slot(['selected.append(score)','selected.insert(len(selected), score)'],['select
 ];
 
 const tasks=[
-  ['УРОК 31 · СЛОВО ЧИ КІЛЬКА',words],
-  ['УРОК 32 · КВАДРАТНЕ РІВНЯННЯ',equations],
+  ['УРОК 31 · ПОВТОРЕННЯ РОЗГАЛУЖЕНЬ',branching31],
+  ['УРОК 32 · ПОВТОРЕННЯ РОЗГАЛУЖЕНЬ',branching32],
   ['УРОК 33 · ПРАПОРЦІ',checkboxes],
   ['УРОК 34 · ПЕРЕМИКАЧІ',radios],
   ['ПОВТОРЕННЯ ПОПЕРЕДНІХ УРОКІВ',recap]
@@ -307,11 +309,11 @@ const tasks=[
 
 const questions = [
 ['Що визначить умова «пробіл є в рядку» для тексту «добрий день»?',['Одне слово','Кілька слів','Порожній рядок'],1],
-['Який запис оновлює змінну str_var, коли учень редагує поле?',['Entry(text=str_var)','Entry(textvariable=str_var.get())','Entry(textvariable=str_var)'],2],
-['У рядку s порожньо. Чому умова s != "" and " " not in s хибна?',['Перша частина хибна, а для and потрібні обидві істинні','У порожньому рядку завжди є пробіл','and повертає істину для будь-якого рядка'],0],
-['Який дискримінант для a = 1, b = −3, c = 2?',['−1','1','17'],1],
+['Умова x > 0 and x <= 5. Яке з чисел дає істину?',['0','6','5'],2],
+['Змінна ready має значення False. Яке значення отримає blocked після blocked = not ready?',['True','False','Рядок "False"'],0],
+['Квиток є, запрошення немає, прохід закрито. Що дає умова (ticket or invite) and not closed?',['True','False','Помилка'],1],
 ['Що має показати програма, якщо D від’ємний?',['Два дійсні корені','Один дійсний корінь','Дійсних коренів немає'],2],
-['Який єдиний корінь для a = 2, b = −4, якщо D = 0?',['1','−1','4'],0],
+['Кнопка має поділити a на b. Що робить обробник за b = 0?',['Показує повідомлення й пропускає ділення','Обчислює a / b','Виконує обидві гілки'],0],
 ['Що повертає BooleanVar.get(), якщо позначку знято?',['True','False','Рядок "False"'],1],
 ['Два прапорці вибрано. Спочатку if перевіряє перший, потім окремий if — другий. Які дії виконаються?',['Тільки перша','Тільки друга','Обидві'],2],
 ['Що робить перемикачі взаємовиключними в одній групі?',['Одна спільна variable та різні value','Різні variable та однакові value','Однакові підписи'],0],
@@ -416,7 +418,7 @@ function projectChecks(values){
   return [{label:'Взаємовиключні діапазони та незалежні позначки занять',pass:group},...cases];
 }
 
-const KEY='grade8-branching-31-34-v1';
+const KEY='grade8-branching-31-34-v4';
 const fresh=()=>({
   stage:0,profile:null,index:0,answers:tasks.map(()=>[]),history:tasks.map(()=>[]),test:[],practice:null,result:null
 });
@@ -425,6 +427,19 @@ try {
   const saved=JSON.parse(localStorage.getItem(KEY));
   if(saved?.history?.length===tasks.length && saved.answers?.length===tasks.length &&
     [0,1,2,3].includes(saved.stage)) state=saved;
+  else if(!saved){
+    const previous=JSON.parse(localStorage.getItem('grade8-branching-31-34-v3'));
+    if([1,2].includes(previous?.stage) && previous.profile && previous.answers?.length===tasks.length &&
+      previous.history?.length===tasks.length && Array.isArray(previous.test)){
+      state={...previous,stage:1,practice:null,result:null};
+      for(const i of [2,3,4,7,9,10]){
+        state.answers[i]=[];
+        state.history[i]=[];
+      }
+      for(const i of [2,3]) state.test[i]=null;
+      localStorage.setItem(KEY,JSON.stringify(state));
+    }
+  }
 } catch {storageOK=false;}
 const $=id=>document.getElementById(id);
 function save(){
