@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Цикл з лічильником і розгалуження</title><style>:root{font-family:Segoe UI,system-ui,sans-serif;color:#213a4a;background:#f4f5f1;--blue:#225bc7;--line:#d9e0e2;--muted:#5c6d74}*{box-sizing:border-box}body{margin:0}main{max-width:1060px;margin:auto;padding:0 24px 48px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);margin-bottom:28px}.brand{font-weight:750;font-size:20px;letter-spacing:-.5px}header ol{display:flex;list-style:none;gap:18px;padding:0;margin:0;font-size:13px;color:var(--muted)}header li.active{color:var(--blue);font-weight:750}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:30px;margin-bottom:22px;box-shadow:0 4px 14px #19374904}.narrow{max-width:680px;margin:35px auto}h1{font-size:30px;line-height:1.2;letter-spacing:-.8px;margin:0 0 16px}h2{font-size:16px;margin:0 0 12px;font-weight:650}p{line-height:1.65}button,input,select,textarea{font:inherit}button{min-height:46px;padding:11px 18px;border-radius:9px;border:1px solid #b9c8ce;background:white;color:#233e50;font-weight:650;cursor:pointer}button:hover{background:#eef3fb}button:disabled{opacity:.48;cursor:default}button.primary{background:var(--blue);border-color:var(--blue);color:white}button.primary:hover{background:#174ba8}label{display:block;margin:16px 0 7px;font-size:14px;font-weight:650}input,select,textarea{width:100%;min-height:46px;padding:11px;border:1px solid #b8c5cd;border-radius:8px;color:#203d50;background:white}textarea{resize:vertical;line-height:1.5;min-height:100px;font-family:Consolas,monospace}button:focus-visible,input:focus,select:focus,textarea:focus{outline:3px solid #edc15d;outline-offset:2px}.small{font-size:13px;color:var(--muted)}.policy{font-size:14px;background:#f0f4fb;border-radius:10px;padding:16px}.narrow .primary{margin-top:14px}.progress-line{display:flex;align-items:center;gap:18px;font-size:14px;margin-bottom:15px}.progress-line span{white-space:nowrap}progress{width:100%;height:7px;accent-color:var(--blue)}#taskNav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}#taskNav button{padding:0;width:36px;min-height:36px;border-radius:50%;font-size:12px}#taskNav .current{background:#213e54;color:white;border-color:#213e54}#taskNav .done{border-color:#6da88a}.instruction{max-width:840px;margin-bottom:26px;font-size:16px}.studio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px}.studio form,.studio aside{min-width:0}.studio label:first-child{margin-top:0}.preview{min-height:210px;background:#f0f2f5;border:1px solid #d3dbe1;border-radius:12px;position:relative;padding:16px;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:14px}.preview button,.preview .sim-label{border-radius:4px;background:#e4e6e8;border:1px solid #9da6ae;font:14px Arial,sans-serif;min-height:28px;padding:6px 9px;text-align:center;max-width:100%;overflow-wrap:anywhere;font-weight:400}.preview .sim-label{background:transparent;border-color:transparent;cursor:default}.preview .sim-label.interactive{cursor:pointer;border:1px dashed #8495a3}.preview .empty{margin:auto;color:#667780;font-size:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;font:13px/1.6 Consolas,monospace;color:#41596e;background:#f7f8fa;padding:14px;border-radius:9px}pre:empty{display:none}.feedback{font-size:14px;min-height:24px;padding-top:14px}.feedback.good{color:#256649}.actions{display:flex;gap:12px;border-top:1px solid #e2e6e8;padding-top:20px}.warning{padding:15px 18px;border:1px solid #dfc17b;background:#fff6de;border-radius:10px;line-height:1.6;font-size:14px;margin-bottom:18px}.warning a{margin-left:8px}.warning button{margin:10px 8px 0 0}.question{padding:18px 0;border-bottom:1px solid var(--line)}.question label{line-height:1.6;margin:0 0 10px}.scores{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:25px 0}.score-card{background:#f0f4fa;padding:22px;border-radius:12px}.score{font-size:36px;font-weight:750;color:var(--blue)}.result-row{padding:15px 0;border-bottom:1px solid var(--line)}.result-row strong{display:block;font-size:14px;margin-bottom:5px}.result-row p{margin:4px 0;font-size:13px;color:#516675}a{color:var(--blue)}.access{max-width:480px}.access h1{font-size:26px}.register{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:12px;text-align:left;border-bottom:1px solid var(--line)}[hidden]{display:none!important}@media(max-width:700px){main{padding:0 16px 30px}header{padding:19px 0;display:block;margin-bottom:20px}.brand{font-size:18px}header ol{margin-top:14px;gap:14px;font-size:12px}.panel{padding:21px;border-radius:14px}.narrow{margin:22px auto}h1{font-size:25px}.studio{grid-template-columns:1fr;gap:24px}.instruction{font-size:15px}.progress-line{font-size:13px;gap:12px}#taskNav{gap:5px}#taskNav button{width:33px;min-height:33px}.scores{grid-template-columns:1fr}.actions button{flex:1;padding:11px}.preview{min-height:200px}.test-panel{padding:20px}.preview button{font-size:13px}}
+
+.code-blanks{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/2.8 Consolas,monospace;margin:0;width:100%;min-width:0}.code-blanks select{display:inline-block;width:auto;max-width:100%;min-height:44px;font:inherit;color:#174c80;border:2px solid #538ac0;border-radius:7px;vertical-align:baseline;padding:4px}#fields{display:block;min-width:0}@media(max-width:600px){.code-blanks{font-size:13px;line-height:3.3}.code-blanks select{font-size:13px;padding:2px;max-width:100%}}
+
+.studio{grid-template-columns:minmax(0,1fr)} #questions label{white-space:pre-line}
+
+#instruction{white-space:pre-line} #lessonBlock{margin:0 0 10px}
+</style></head>
+<body><main>
+<header><span class="brand">Цикл з лічильником і розгалуження</span><ol id="stages" aria-label="Етапи роботи"><li>Дані</li><li>Практика</li><li>Тест</li><li>Результати</li></ol></header>
+<div id="warning" class="warning" role="alert" hidden><span id="warningText"></span></div>
+<section id="identity" class="panel narrow" hidden><h1>Почнімо</h1><form id="identityForm"><label for="surname">Прізвище</label><input id="surname" autocomplete="family-name" maxlength="60" required><label for="firstName">Ім’я</label><input id="firstName" autocomplete="given-name" maxlength="60" required><label for="className">Клас</label><select id="className" required><option value="">Обери клас</option></select><p class="small">Пройди 15 кроків від циклів уроку №36 до практичної роботи №35. Обирай фрагменти Python-коду й перевіряй свої рішення. Після фінального проєкту пройди тест.</p><p class="policy">За правильну першу перевірку — 100% балів завдання, другу — 90%, наступні — 80%. За нерозв’язані завдання зараховуються правильні частини. Редагуй і випробовуй вільно: спроба починається лише кнопкою «Перевірити».</p><button class="primary" type="submit">Почати практику →</button></form></section>
+<section id="practice" hidden><div class="progress-line"><span id="taskCount"></span><progress id="progress" max="15" value="0"></progress></div><nav id="taskNav" aria-label="Завдання практики"></nav><div class="panel"><p id="lessonBlock" class="small"></p><h1 id="taskTitle"></h1><p id="instruction" class="instruction"></p><div class="studio"><form id="taskForm"><div id="fields"></div></form><aside><h2>Результат</h2><div id="preview" class="preview"></div><pre id="codePreview"></pre><p id="previewNote" class="small" aria-live="polite"></p></aside></div><p id="feedback" class="feedback" role="status" aria-live="polite"></p><div class="actions"><button id="check" class="primary" form="taskForm" type="submit">Перевірити</button><button id="next" disabled>Далі →</button></div></div></section>
+<section id="test" class="panel narrow test-panel" hidden><h1>Короткий тест</h1><p>8 запитань про виконані завдання. Відповіді перевіряються після завершення всього тесту; правило повторних спроб практики тут не застосовується.</p><form id="testForm"><div id="questions"></div><button class="primary" id="finishTest" type="submit">Завершити тест</button></form></section>
+<section id="results" class="panel" hidden><h1>Результати тренажера</h1><div id="scores" class="scores"></div><div id="exportArea" hidden><p>Робота збережена на цьому пристрої. Сайт її нікуди не надсилав. Завантаж файл результатів, прикріпи його до завдання Classroom і натисни «Здати» там.</p><div class="actions"><button id="exportHTML" class="primary">Завантажити результат</button><button id="newWork">Почати нову роботу</button></div><p id="exportNote" class="small" role="status"></p></div><div id="deductions"></div></section>
+<p id="loading" class="small">Завантаження…</p>
+</main><script>window.LESSON_DATA={"id": "loops36", "version": "loops36-pages-1", "title": "Цикл з лічильником і розгалуження", "tasks": [{"id": "p01", "title": "Три повторення", "instruction": "Виведи слово «Старт» рівно тричі.", "code": "for i in {{b0}}:\n    print(\"Старт\")", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "range(3)", "options": ["range(4)", "range(3)", "range(2)", "range[3]"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p02", "title": "Значення лічильника", "instruction": "Виведи числа 0, 1 і 2, кожне з нового рядка.", "code": "for i in range(3):\n    print({{b0}})", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "i", "options": ["range(3)", "3", "i", "i + 1"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p03", "title": "Після циклу", "instruction": "«Крок» має з’явитися двічі, а «Готово» — один раз після циклу.", "code": "for i in range(2):\n    {{b0}}\n{{b1}}", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "print(\"Крок\")", "options": ["print(\"Готово\")", "print(\"Крок\"", "print(\"Крок\")"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "print(\"Готово\")", "options": ["print(\"Крок\")", "print(\"Готово\"", "print(\"Готово\")"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p04", "title": "Межі діапазону", "instruction": "Виведи 3, 5 і 7. Верхня межа 8 вже задана.", "code": "for i in range(3, 8, {{b0}}):\n    print(i)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "2", "options": ["2", "3", "0", "1"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p05", "title": "Зворотний відлік", "instruction": "Виведи 5, 3 і 1. Наступне значення має бути на 2 менше.", "code": "for i in {{b0}}:\n    print(i)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "range(5, 0, -2)", "options": ["range(5, 0, 2)", "range(5, 0, -1)", "range(5, 1, -2)", "range(5, 0, -2)"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p06", "title": "Накопичення", "instruction": "Почни з нуля й додай до суми по 10 чотири рази. Очікується 40.", "code": "s = {{b0}}\nfor i in range(4):\n    s = {{b1}}\nprint(s)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "0", "options": ["0", "1", "10"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "s + 10", "options": ["s * 10", "s + 10", "10"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p07", "title": "Номер шару", "instruction": "Лічильник починається з нуля, а шари нумеруються з одиниці. Для чотирьох шарів виведи 1, 2, 3, 4.", "code": "for i in range(4):\n    layer = {{b0}}\n    print(layer)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "i + 1", "options": ["i + 2", "i", "4", "i + 1"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p08", "title": "Кульки в пірамідці", "instruction": "У шарі k є k рядів по k кульок. Знайди суму для всіх n шарів. Для n = 4 очікується 30.", "code": "n = 4\ns = 0\nfor i in {{b0}}:\n    k = i + 1\n    s = {{b1}}\nprint(s)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "range(n)", "options": ["range(n + 1)", "range(1, n)", "range(n)"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "s + k * k", "options": ["s + k * k", "k * k", "s + k", "s + k + k"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p09", "title": "Велопробіг", "instruction": "Перший етап має довжину x км. Кожен наступний довший на 30 км. Спершу врахуй поточний етап, потім підготуй наступний. Для n = 3 і x = 20 очікується 150 км.", "code": "n = 3\nx = 20\ns = 0\nfor i in range(n):\n    {{b0}}\n    {{b1}}\nprint(s)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "s = s + x", "options": ["x = x + 30", "s = s + x", "s = x"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "x = x + 30", "options": ["x = 30", "s = s + x", "x = x + 30"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p10", "title": "Контрольний приклад", "instruction": "У велопробігу 2 етапи, перший має 10 км, другий довший на 30 км. Заповни очікувану загальну довжину.", "code": "expected_km = {{b0}}", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "50", "options": ["50", "20", "40", "70"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p11", "title": "Ділення за умови", "instruction": "Обчисли (a + 3b) / (2a − b), якщо знаменник ненульовий. Для a = 2 і b = 4 потрібне повідомлення.", "code": "a, b = 2, 4\nd = 2 * a - b\nif {{b0}}:\n    print(\"Ділення на нуль\")\nelse:\n    print({{b1}})", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "d == 0", "options": ["d = 0", "d != 0", "d == 0"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "(a + 3 * b) / d", "options": ["d / (a + 3 * b)", "(a + 3 * b) / d", "a + 3 * b / d"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p12", "title": "Найменше з чотирьох", "instruction": "Початковий мінімум — перше число. Переглянь інші три і збережи менше за поточний мінімум.", "code": "a = [7, 2, -1, 4]\nm = a[0]\nfor i in range(1, 4):\n    if {{b0}}:\n        m = {{b1}}\nprint(m)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "a[i] < m", "options": ["a[i] < m", "a[i] == m", "a[i] > m"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "a[i]", "options": ["i", "m", "a[i]"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p13", "title": "Два перемикачі", "instruction": "Користувач має обрати один тариф. Обидва перемикачі записують значення в plan. Для другого потрібне значення 2.", "code": "plan = IntVar(value=1)\nRadiobutton(text=\"15%\", variable=plan, value=1).pack()\nRadiobutton(text=\"17%\", variable={{b0}}, value={{b1}}).pack()", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "plan", "options": ["plan", "IntVar()", "plan.get()"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "2", "options": ["1", "0", "2"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p14", "title": "Прочитай вибір", "instruction": "Якщо вибрано перший тариф, виведи 15. Для другого тарифу виведи 17.", "code": "if {{b0}}:\n    print(15)\nelse:\n    print(17)", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "plan.get() == 1", "options": ["plan == 1", "plan.get = 1", "plan.get() == 2", "plan.get() == 1"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}], "points": 2}, {"id": "p15", "title": "Практична · калькулятор вкладу", "instruction": "Заповни 4 пропуски. 1) Збережи початковий вклад P в total. 2) Повтори розрахунок два роки. 3) Для тарифу 15% щороку додавай 15% від поточного залишку total. 4) Для тарифу 17% щороку додавай 17% від початкової суми P. Виведи суму один раз після циклу з двома десятковими знаками. Контроль для P = 1000: тариф 15% → 1322,50 грн, тариф 17% → 1340,00 грн. Перемикачі вже створено в попередній вправі. Тут доповни лише обчислення.", "code": "P = 1000\ntotal = {{b0}}\nfor year in {{b1}}:\n    if plan.get() == 1:\n        total = {{b2}}\n    else:\n        total = {{b3}}\nprint(f\"{total:.2f}\")", "fields": [{"key": "b0", "label": "Пропуск 1", "kind": "pyexpr", "expected": "P", "options": ["1000 * 2", "P", "0"], "hint": "Перевір пропуск 1. Підстав дані з умови й простеж виконання."}, {"key": "b1", "label": "Пропуск 2", "kind": "pyexpr", "expected": "range(2)", "options": ["range(2)", "range(3)", "range(1)"], "hint": "Перевір пропуск 2. Підстав дані з умови й простеж виконання."}, {"key": "b2", "label": "Пропуск 3", "kind": "pyexpr", "expected": "total + total * 0.15", "options": ["total * 0.15", "total + P * 0.15", "total + total * 0.15"], "hint": "Перевір пропуск 3. Підстав дані з умови й простеж виконання."}, {"key": "b3", "label": "Пропуск 4", "kind": "pyexpr", "expected": "total + P * 0.17", "options": ["total + total * 0.17", "total + P * 0.17", "P * 0.17"], "hint": "Перевір пропуск 4. Підстав дані з умови й простеж виконання."}], "points": 6}], "tests": [[{"key": "q1", "label": "Скільки разів виконається тіло циклу з range(5)?", "expected": 5, "kind": "number", "hint": ""}, {"key": "q2", "label": "Яке останнє значення набуде i у циклі for i in range(4)?", "expected": 3, "kind": "number", "hint": ""}, {"key": "q3", "label": "Яке останнє число дає range(3, 8, 2)?", "expected": 7, "kind": "number", "hint": ""}, {"key": "q4", "label": "Скільки кульок у пірамідці з 2 шарів?", "expected": 5, "kind": "number", "hint": ""}, {"key": "q5", "label": "Перший етап 20 км, другий довший на 30 км. Яка загальна довжина?", "expected": 70, "kind": "number", "hint": ""}, {"key": "q6", "label": "Чому дорівнює 2a − b для a = 3 і b = 6?", "expected": 0, "kind": "number", "hint": ""}, {"key": "q7", "label": "Яке найменше з чисел 4, −3, 9, 0?", "expected": -3, "kind": "number", "hint": ""}, {"key": "q8", "label": "Скільки гривень буде через два роки для P = 1000 за тарифом 17% без капіталізації?", "expected": 1340, "kind": "number", "hint": ""}], [{"key": "q1", "label": "Скільки разів виконається тіло циклу з range(5)?", "expected": 5, "kind": "number", "hint": ""}, {"key": "q2", "label": "Яке останнє значення набуде i у циклі for i in range(4)?", "expected": 3, "kind": "number", "hint": ""}, {"key": "q3", "label": "Яке останнє число дає range(3, 8, 2)?", "expected": 7, "kind": "number", "hint": ""}, {"key": "q4", "label": "Скільки кульок у пірамідці з 2 шарів?", "expected": 5, "kind": "number", "hint": ""}, {"key": "q5", "label": "Перший етап 20 км, другий довший на 30 км. Яка загальна довжина?", "expected": 70, "kind": "number", "hint": ""}, {"key": "q6", "label": "Чому дорівнює 2a − b для a = 3 і b = 6?", "expected": 0, "kind": "number", "hint": ""}, {"key": "q7", "label": "Яке найменше з чисел 4, −3, 9, 0?", "expected": -3, "kind": "number", "hint": ""}, {"key": "q8", "label": "Скільки гривень буде через два роки для P = 1000 за тарифом 17% без капіталізації?", "expected": 1340, "kind": "number", "hint": ""}]], "classes": ["8-А", "8-Б", "8-Г", "8-Д", "8-Є"], "policy": {"first": 1, "second": 0.9, "later": 0.8}};
+'use strict';
+(function(root){
+const clone=v=>JSON.parse(JSON.stringify(v));
+const equal=(a,b)=>Array.isArray(a)&&Array.isArray(b)?a.length===b.length&&a.every((v,i)=>equal(v,b[i])):typeof a==='number'&&typeof b==='number'?Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a),Math.abs(b)):JSON.stringify(a)===JSON.stringify(b);
+function numberList(value){
+ if(Array.isArray(value)){if(value.length>50||!value.every(n=>typeof n==='number'&&Number.isFinite(n)&&Math.abs(n)<=1e6))throw Error('Уведи до 50 звичайних чисел.');return [...value];}
+ let text=String(value??'').trim().replace(/[−–]/g,'-').replace(/^a\s*=\s*/,'');
+ if(text.startsWith('[')){if(!text.endsWith(']'))throw Error('Закрий квадратні дужки списку.');text=text.slice(1,-1).trim();}
+ if(!text)return [];
+ const parts=text.includes(',')?text.split(',').map(v=>v.trim()):text.split(/\s+/);
+ if(parts.length>50||parts.some(v=>!/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[-+]?\d+)?$/i.test(v)))throw Error('Запиши числа через пропуск або кому; дробову частину — через крапку.');
+ const nums=parts.map(Number);if(!nums.every(n=>Number.isFinite(n)&&Math.abs(n)<=1e6))throw Error('Числа мають бути скінченними й не більшими за мільйон за модулем.');return nums;
+}
+function command(source){
+  const m=String(source||'').match(/^\s*(button|label)\s*\[\s*(['"])(text|width|bg|fg)\2\s*\]\s*=\s*(?:(['"])(.*?)\4|([+-]?\d+))\s*;?\s*(?:#[^\n]*)?$/s);
+  return m?{target:m[1],prop:m[3],value:m[5]??Number(m[6])}:null;
+}
+function normalize(task,answer){
+  const out={};for(const f of task.fields){let value=String(answer?.[f.key]??'').trim();
+    if(f.kind==='fragment'||f.kind==='pyexpr')value=value.replace(/\s/g,'');
+    if(f.kind==='numlist'){try{value=numberList(value);}catch(e){}}
+    if(f.kind==='tokens')value=value?value.split(/\s+/):[];
+    if(f.key==='event'&&value==='<Button-1>')value='<1>';
+    if(f.kind==='number'&&value!==''&&Number.isFinite(Number(value))&&Math.abs(Number(value))<=1e9)value=Number(value);
+    if(f.kind==='code')value=command(value)||value;
+    if(f.aliases?.some(alias=>(f.kind==='pyexpr'?alias.replace(/\s/g,''):alias)===value))value=f.kind==='pyexpr'?String(f.expected).replace(/\s/g,''):f.expected;
+    out[f.key]=value;
+  }return out;
+}
+const signature=(task,answer)=>JSON.stringify(normalize(task,answer));
+function evaluate(task,answer,inspected=false){
+  const norm=normalize(task,answer),components=[];
+  for(const f of task.fields){const value=norm[f.key],expected=f.kind==='pyexpr'?String(f.expected).replace(/\s/g,''):f.expected;
+    if(Array.isArray(expected))components.push({component:f.label,correct:equal(value,expected),hint:f.hint});
+    else if(expected&&typeof expected==='object')for(const [part,want] of Object.entries(expected))components.push({component:f.label+' · '+({target:'об’єкт',prop:'властивість',value:'значення'}[part]),correct:!!(value&&typeof value==='object'&&value[part]===want),hint:f.hint});
+    else components.push({component:f.label,correct:value===expected,hint:f.hint});
+  }
+  if(task.inspect)components.push({component:task.inspectionLabel||'Випробування події',correct:!!inspected,hint:task.inspectionHint||'Випробуй налаштовану подію в перегляді, а потім перевір рішення.'});
+  return {raw:components.filter(c=>c.correct).length/components.length*task.points,max:task.points,correct:components.every(c=>c.correct),components,hint:components.find(c=>!c.correct)?.hint||'Правильно. Можна рухатися далі.'};
+}
+function preview(task,answer,inputs={}){
+  const v=normalize(task,answer);
+  if(task.mode==='entry-copy')return {success:v.target==='label'&&v.prop==='text'&&v.read==='entry.get()',result:{value:String(inputs.text||'')}};
+  if(['entry-predict','entry-sum'].includes(task.mode)){
+    const x=Number(inputs.x??'2.5'),y=Number(inputs.y??'1.5');
+    if(String(inputs.x??'2.5').trim()===''||String(inputs.y??'1.5').trim()===''||![x,y].every(n=>Number.isFinite(n)&&Math.abs(n)<=1e9))throw Error('Уведи два числа; дробову частину відділяй крапкою.');
+    return {success:task.mode==='entry-predict'||v.convert==='float'&&v.operation==='x + y'&&v.target==='label'&&v.output==='str(z)',result:{x,y,value:x+y}};
+  }
+  return {success:task.mode==='predict'||(task.mode==='label-event'?v.handler==='click'&&v.event==='<1>':v.command==='click')};
+}
+function check(task,answer,rows=[],inspected=false){
+  if(!Object.values(answer||{}).some(v=>String(v).trim()))throw Error('Спочатку запропонуй рішення; порожня відповідь не є спробою.');
+  const sig=signature(task,answer),norm=normalize(task,answer);
+  if(!Object.values(norm).some(v=>typeof v==='object'||String(v).trim()))throw Error('Спочатку запропонуй рішення; порожня відповідь не є спробою.');
+  const old=rows.find(r=>r.signature===sig);
+  if(old){const updated=evaluate(task,answer,inspected);if(updated.raw>old.evaluation.raw)old.evaluation=updated;return {row:old,duplicate:true};}
+  if(rows.some(r=>r.evaluation.correct))throw Error('Це завдання вже розв’язано. Результат збережено.');
+  const row={signature:sig,ordinal:rows.length+1,answer:clone(answer),evaluation:evaluate(task,answer,inspected)};rows.push(row);return {row,duplicate:false};
+}
+function factor(n,p){return n===1?p.first:n===2?p.second:p.later;}
+function round(n){return Math.round((n+Number.EPSILON)*100)/100;}
+function gcd(a,b){while(b){[a,b]=[b,a%b];}return a;}
+function grade(tasks,histories,p={first:1,second:.9,later:.8}){
+  // Exact integer credit units avoid rounding each component before the final 1–12 grade.
+  let denominator=1;for(const t of tasks){const n=evaluate(t,{}).components.length*100;denominator=denominator/gcd(denominator,n)*n;}
+  let units=0;const details=[];
+  for(const t of tasks){const rows=histories[t.id]||[],correct=rows.find(r=>r.evaluation.correct);
+    const score=r=>r.evaluation.components.filter(c=>c.correct).length*t.points*Math.round(factor(r.ordinal,p)*100)*(denominator/(r.evaluation.components.length*100));
+    const best=correct||rows.reduce((a,r)=>!a||score(r)>score(a)?r:a,null);
+    const raw=best?best.evaluation.raw:0,mult=best?factor(best.ordinal,p):1,credit=best?score(best):0;units+=credit;
+    details.push({task:t.id,title:t.title,raw:round(raw),max:t.points,factor:mult,earned:round(credit/denominator),attempts:rows.length,correct:!!correct,deduction:round(raw-credit/denominator),unresolved_loss:round(t.points-raw),components:best?.evaluation.components||[]});
+  }
+  const max=tasks.reduce((n,t)=>n+t.points,0);
+  return {raw:round(units/denominator),max,grade:Math.max(1,Math.min(12,Math.floor((24*units+max*denominator)/(2*max*denominator)))),first_attempt:details.filter(d=>d.correct&&d.attempts===1).length,corrected:details.filter(d=>d.correct&&d.attempts>1).length,details,policy:p,authority:'browser_training_only'};
+}
+function test(questions,answers){
+  const norm=normalize({fields:questions},answers),details=questions.map(q=>({question:q.key,score:Number(equal(norm[q.key],q.kind==='pyexpr'?String(q.expected).replace(/\s/g,''):q.expected)),max:1}));
+  const raw=details.reduce((n,q)=>n+q.score,0),max=questions.length;
+  return {raw,max,grade:Math.max(1,Math.min(12,Math.floor((24*raw+max)/(2*max)))),details,authority:'browser_training_only'};
+}
+const api={normalize,signature,evaluate,preview,check,grade,test,command,numberList,equal};
+if(typeof module==='object'&&module.exports)module.exports=api;else root.TrainerEngine=api;
+})(typeof window==='undefined'?{}:window);
+
+'use strict';
+const $=id=>document.getElementById(id),lesson=window.LESSON_DATA,E=window.TrainerEngine;
+const STORAGE='informatics-pages:'+lesson.version+':'+location.pathname.replace(/index\.html$/, '');
+let doc,storageOK=true;
+const fresh=()=>({version:lesson.version,owner:'local',answers:{},test_answers:{},current:0,stage:'identity',queue:[],histories:{},confirmed:{},previews:{},submissions:[],variant:Math.floor(Math.random()*2)});
+function warning(text){if(!text&&!storageOK)text='Не вдається зберегти прогрес у браузері. Не закривай сторінку; після роботи завантаж файл результатів.';$('warning').hidden=!text;$('warningText').textContent=text;}
+function keep(){try{localStorage.setItem(STORAGE,JSON.stringify(doc));storageOK=true;return true;}catch(e){storageOK=false;warning('Не вдається зберегти прогрес у браузері. Не закривай сторінку; після роботи завантаж файл результатів.');return false;}}
+function draftChanged(){keep();}
+const signature=answer=>JSON.stringify(Object.fromEntries(Object.entries(answer||{}).sort().map(([k,v])=>[k,String(v).trim()])));
+function currentTask(){return lesson.tasks[doc.current];}
+function pending(){return null;}
+function history(id){return doc.histories[id]||[];}
+function isCorrect(id){return history(id).some(r=>r.evaluation.correct);}
+function isChecked(id){return doc.confirmed[id]===signature(doc.answers[id]);}
+function enqueue(type,_path,body){
+  if(type!=='preview')return;
+  try{const task=lesson.tasks.find(t=>t.id===body.task),result=E.preview(task,body.answer,body.inputs);if(result.success){doc.previews[task.id]??={};doc.previews[task.id][E.signature(task,body.answer)]={inputs:body.inputs||{},result:result.result||null};keep();}}
+  catch(e){$('previewNote').textContent=e.message;}
+}
+function stage(name){
+  doc.stage=name;['identity','practice','test','results'].forEach(id=>$(id).hidden=id!==name);
+  const n=['identity','practice','test','results'].indexOf(name);
+  document.querySelectorAll('#stages li').forEach((li,i)=>li.classList.toggle('active',i===n));
+  $('loading').hidden=true;keep();
+}
+function fieldsFor(container,fields,values,onChange,disabled=false){
+  container.replaceChildren();
+  for(const field of fields){
+    const label=document.createElement('label');label.htmlFor='field-'+field.key;label.textContent=field.label;
+    const input=document.createElement(field.options?'select':field.kind==='code'?'textarea':'input');input.id=label.htmlFor;input.name=field.key;
+    if(field.options){input.add(new Option('Обери…',''));for(const option of field.options)input.add(new Option((['one','two','three'].includes(field.key)?lesson.order_labels?.[option]:null)||option,option));}
+    else if(field.kind==='number'){input.inputMode='numeric';input.type='text';input.maxLength=5;}
+    else input.maxLength=300;
+    input.value=values[field.key]??'';input.disabled=disabled;
+    input.addEventListener('input',()=>onChange(field.key,input.value));container.append(label,input);
+  }
+}
+function renderTask(){
+  stage('practice');const task=currentTask(),i=doc.current;doc.answers[task.id]??={};
+  $('taskCount').textContent=`Завдання ${i+1} із ${lesson.tasks.length}`;
+  $('progress').value=Object.keys(doc.histories).length;
+  $('taskTitle').textContent=task.title;$('instruction').textContent=task.instruction;
+  const nav=$('taskNav');nav.replaceChildren();
+  const reachable=Math.min(lesson.tasks.length-1,Math.max(doc.current,Object.keys(doc.histories).length, ...doc.queue.filter(o=>o.type==='check').map(o=>lesson.tasks.findIndex(t=>t.id===o.body.task)+1)));
+  lesson.tasks.forEach((t,j)=>{const b=document.createElement('button');b.textContent=String(j+1);b.setAttribute('aria-label','Завдання '+(j+1));b.disabled=j>reachable;b.className=j===i?'current':isCorrect(t.id)?'done':'';b.addEventListener('click',()=>{doc.current=j;draftChanged();renderTask();});nav.append(b);});
+  codeBlanks(task);
+  $('lessonBlock').textContent = i < 10 ? 'Урок №36 · Цикл з лічильником' :
+    i < 14 ? 'Урок №35 · Розгалуження та перемикачі' : 'Практична робота №5 · Фінальний проєкт';
+  $('instruction').textContent = task.instruction;
+  const intro = [
+    'У for i in range(n) тіло циклу виконується n разів. Лічильник починається з 0.',
+    'range(початок, кінець, крок) включає початок і зупиняється перед кінцем. Крок може бути від’ємним.',
+    'У циклі можна накопичувати суму. На кожному кроці додай нове значення до попередньої суми.',
+    'У повному розгалуженні if виконує одну гілку за істинної умови, else — іншу за хибної.',
+    'Перемикачі однієї групи записують різні значення в спільну змінну. Читай вибір через get().'
+  ][[0, 3, 5, 10, 12].indexOf(i)];
+  if (intro) $('instruction').textContent = intro + '\n\n' + task.instruction;
+  const checked=isChecked(task.id),rows=history(task.id),last=rows[rows.length-1];
+  $('check').disabled=isCorrect(task.id)||!!pending(task.id);
+  $('next').disabled=!checked;
+  $('next').textContent=i===lesson.tasks.length-1?'До тесту →':'Далі →';
+  $('feedback').className='feedback'+(last?.evaluation.correct?' good':'');
+  $('feedback').textContent=last&&checked?`${last.evaluation.hint} Перевірок: ${rows.length}.` : '';
+  preview(task,doc.answers[task.id]);
+}
+function parseCommand(source){
+  const m=String(source||'').match(/^\s*(button|label)\s*\[\s*(['"])(text|width|bg|fg)\2\s*\]\s*=\s*(?:(['"])(.*?)\4|([+-]?\d+))\s*;?\s*$/s);
+  return m?{target:m[1],prop:m[3],value:m[5]??Number(m[6])}:null;
+}
+function applyProps(el,props){
+  if(props.text!==undefined)el.textContent=props.text||'…';
+  if(CSS.supports('color',props.bg||''))el.style.backgroundColor=props.bg;
+  if(CSS.supports('color',props.fg||''))el.style.color=props.fg;
+  if(Number(props.width)>0)el.style.width=Math.min(40,Number(props.width))+'ch';
+  if(Number(props.height)>0)el.style.minHeight=Math.min(5,Number(props.height))*22+'px';
+  if(Number(props.size)>0)el.style.fontSize=Math.min(32,Number(props.size))+'px';
+  if(props.family)el.style.fontFamily=props.family;
+  if(props.style==='bold')el.style.fontWeight='bold';if(props.style==='italic')el.style.fontStyle='italic';
+}
+function codeBlanks(task){
+ const box=$('fields');box.replaceChildren();const pre=document.createElement('pre');pre.className='code-blanks';box.append(pre);
+ const parts=task.code.split(/(\{\{b\d+\}\})/);
+ for(const part of parts){const m=part.match(/^\{\{(b\d+)\}\}$/);if(!m){pre.append(document.createTextNode(part));continue;}
+  const f=task.fields.find(f=>f.key===m[1]),s=document.createElement('select');s.setAttribute('aria-label',f.label);s.add(new Option('［ '+f.label+' ］',''));for(const o of f.options)s.add(new Option(o,o));s.value=doc.answers[task.id][f.key]||'';s.disabled=isCorrect(task.id);
+  s.addEventListener('change',()=>{doc.answers[task.id][f.key]=s.value;draftChanged();$('feedback').textContent='';$('next').disabled=true;preview(task,doc.answers[task.id]);});pre.append(s);
+ }
+}
+function preview(task,answer){$('preview').parentElement.hidden=true;$('codePreview').textContent='';$('previewNote').textContent='';}
+function renderTest(){
+  stage('test');doc.questions=lesson.tests[doc.variant];fieldsFor($('questions'),doc.questions.map((q,i)=>({...q,label:(i+1)+'. '+q.label})),doc.test_answers,(k,v)=>{doc.test_answers[k]=v;keep();});
+}
+function renderResults(){
+  stage('results');const scores=$('scores');scores.replaceChildren();
+  for(const kind of ['practice','test']){
+    const sub=doc.submissions.find(s=>s.kind===kind),box=document.createElement('div');box.className='score-card';const h=document.createElement('h2');h.textContent=kind==='practice'?'Практика':'Тест';box.append(h);
+    if(sub){const score=document.createElement('div');score.className='score';score.textContent=sub.result.grade+' / 12';const p=document.createElement('p');p.textContent=`Результат тренажера: ${sub.result.raw} із ${sub.result.max} балів.`;box.append(score,p);if(kind==='practice'){const p=document.createElement('p');p.textContent=`З першої спроби: ${sub.result.first_attempt}. Виправлено: ${sub.result.corrected}.`;box.append(p);}}scores.append(box);
+  }
+  const details=$('deductions');details.replaceChildren();const practice=doc.submissions.find(s=>s.kind==='practice');
+  if(practice)for(const r of practice.result.details){const row=document.createElement('div');row.className='result-row';const h=document.createElement('strong');h.textContent=`${r.title} · ${r.earned} / ${r.max}`;const p=document.createElement('p');p.textContent=`Перевірок: ${r.attempts}; зараховано ${Math.round(r.factor*100)}% балів правильних частин. Зменшення за спроби: ${r.deduction}; за неправильні частини не зараховано: ${r.unresolved_loss}.`;row.append(h,p);details.append(row);}
+  $('exportArea').hidden=!doc.submissions.some(s=>s.kind==='test');
+}
+function report(){return {schema:'informatics-pages-report-1',authority:'browser_report_unverified',classroom_submitted:false,lesson:lesson.id,version:lesson.version,title:lesson.title,profile:doc.profile,variant:doc.variant,results:doc.submissions,attempts:doc.histories,previews:doc.previews,test_answers:doc.test_answers,device_export_time:new Date().toISOString()};}
+function download(text,name,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
+$('exportHTML').addEventListener('click',()=>{
+  const r=report(),scores=r.results.map(s=>`${s.kind==='practice'?'Практика':'Тест'}: ${s.result.grade}/12 (${s.result.raw}/${s.result.max})`).join('\n');
+  const text='\ufeff'+r.title+'\n'+r.profile.surname+' '+r.profile.first_name+' · '+r.profile.class_name+'\n\n'+scores+'\n\nЦе результат тренажера, обчислений у браузері. Сайт не надсилав роботу в Classroom.\n\n--- Дані роботи для перевірки ---\n'+JSON.stringify(r,null,2);
+  download(text,lesson.id+'-result.txt','text/plain;charset=utf-8');$('exportNote').textContent='Файл підготовлено. Прикріпи його до завдання Classroom та натисни «Здати» там.';
+});
+$('identityForm').addEventListener('submit',event=>{
+  event.preventDefault();const profile={surname:$('surname').value.trim(),first_name:$('firstName').value.trim(),class_name:$('className').value};
+  if(!profile.surname||!profile.first_name||!profile.class_name){warning('Укажи прізвище, ім’я та клас.');return;}
+  doc.profile=profile;keep();renderTask();
+});
+$('taskForm').addEventListener('submit',event=>{
+  event.preventDefault();const task=currentTask();
+  try{const rows=doc.histories[task.id]??=[];E.check(task,doc.answers[task.id],rows,!!doc.previews[task.id]?.[E.signature(task,doc.answers[task.id])]);doc.confirmed[task.id]=signature(doc.answers[task.id]);keep();warning('');renderTask();}
+  catch(e){if(!doc.histories[task.id]?.length)delete doc.histories[task.id];warning(e.message);}
+});
+$('next').addEventListener('click',()=>{
+  if(!isChecked(currentTask().id))return;
+  if(doc.current<lesson.tasks.length-1){doc.current++;keep();renderTask();window.scrollTo({top:0,behavior:'instant'});}
+  else{if(!lesson.tasks.every(t=>history(t.id).length)){warning('Перевір кожне завдання перед тестом.');return;}if(!doc.submissions.some(s=>s.kind==='practice'))doc.submissions.push({kind:'practice',result:E.grade(lesson.tasks,doc.histories,lesson.policy)});keep();renderTest();window.scrollTo({top:0,behavior:'instant'});}
+});
+$('testForm').addEventListener('submit',event=>{
+  event.preventDefault();if(!Object.values(doc.test_answers).some(v=>String(v).trim())){warning('Спочатку дай відповіді на запитання.');return;}
+  if(!doc.submissions.some(s=>s.kind==='test'))doc.submissions.push({kind:'test',result:E.test(lesson.tests[doc.variant],doc.test_answers)});keep();renderResults();window.scrollTo({top:0,behavior:'instant'});
+});
+$('newWork').addEventListener('click',()=>{if(!confirm('Почати нову роботу? Спочатку завантаж результати поточної.'))return;try{localStorage.setItem(STORAGE+':previous',JSON.stringify(doc));}catch(e){}doc=fresh();keep();$('identityForm').reset();stage('identity');});
+for(const cls of lesson.classes)$('className').add(new Option(cls,cls));
+document.title=lesson.title;document.querySelector('.brand').textContent=lesson.title;
+
+try{const saved=JSON.parse(localStorage.getItem(STORAGE));if(saved?.version===lesson.version&&saved.answers&&saved.histories&&Array.isArray(saved.submissions))doc=saved;}catch(e){}
+doc??=fresh();
+if(doc.submissions.some(s=>s.kind==='test'))renderResults();else if(doc.submissions.some(s=>s.kind==='practice'))renderTest();else if(doc.profile)renderTask();else stage('identity');
+
+</script></body></html>
