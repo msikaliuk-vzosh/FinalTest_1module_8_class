@@ -1,0 +1,26 @@
+[
+  {
+    "file": "branching_lesson.js",
+    "sha256": "4067f6848b727692c1db0a12367ec9ff3f50c9ef061637e9ec5fd62bb855ae42"
+  },
+  {
+    "file": "checkboxes_index.html",
+    "sha256": "33d3f294416ee9e2f11295e5d6b68772125c7e1295e6c1dd1796d4c45b648f9f"
+  },
+  {
+    "file": "loops39.html",
+    "sha256": "49010297ac9834a61c3abf889833971100f39439c0065748fe8f93e2ba490c5a"
+  },
+  {
+    "file": "loop_loops36.html",
+    "sha256": "a037e8eb1cae6c4abb5d5f638210bcaef18c806127e9930fda1d3a379e51ec38"
+  },
+  {
+    "file": "practice_buttons_lesson.js",
+    "sha256": "b4aba17756ffee7c239a25bb730a937feb64be6880abe4ae8d05ac39cc3426a0"
+  },
+  {
+    "file": "practice_fields_lesson.js",
+    "sha256": "358f135820ab8e790999b779d7cb0cae59d2427573d6c983b9188a6f3704b9ba"
+  }
+]
